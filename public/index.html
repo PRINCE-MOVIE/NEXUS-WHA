@@ -50,6 +50,7 @@
     background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
     font-size:.82rem;font-weight:600;letter-spacing:.06em;color:var(--gold-100);
   }
+  .status[data-online="false"] i{background:var(--muted);animation:none}
   .status i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(123,224,161,.6);animation:ping 2s infinite}
   @keyframes ping{70%{box-shadow:0 0 0 9px rgba(123,224,161,0)}100%{box-shadow:0 0 0 0 rgba(123,224,161,0)}}
 
@@ -396,7 +397,7 @@
     </div>
   </nav>
 
-  <div class="status" role="status"><i aria-hidden="true"></i><span>EN LIGNE<span class="long"> · prêt à connecter</span></span></div>
+  <div class="status" role="status" data-online="false"><i aria-hidden="true"></i><span id="serviceStatus">VÉRIFICATION…</span></div>
 </div>
 
 <main id="top">
@@ -807,13 +808,31 @@ function errorMessage(m){
   return 'Une erreur est survenue. Vérifie ton numéro et réessaie dans un instant.';
 }
 
-const socket = io();
+const unavailableMessage = 'Le service WhatsApp est indisponible. Aucun serveur de connexion n’est actif pour ce site.';
+const socket = typeof window.io === 'function' ? window.io() : null;
+function updateServiceStatus(online){
+  const status = document.getElementById('serviceStatus');
+  status.textContent = online ? 'EN LIGNE · prêt à connecter' : 'SERVICE INDISPONIBLE';
+  status.parentElement.dataset.online = String(online);
+  gen.disabled = !online;
+  err.textContent = online ? '' : unavailableMessage;
+}
+updateServiceStatus(false);
+if (socket) {
 socket.on('connect', () => {
+  updateServiceStatus(true);
   if (currentNum && waiting) socket.emit('connect:numero', {numero: currentNum, rejoinOnly: true});
 });
 socket.on('pairing:code', d => { if (d.numero === currentNum) onCode(d.code); });
 socket.on('session:connected', d => { if (d.numero === currentNum && currentNum) onConnected(); });
 socket.on('error', d => { if (waiting) onFail(errorMessage(d && d.message)); });
+function serviceDisconnected(){
+  if (waiting) onFail(unavailableMessage);
+  updateServiceStatus(false);
+}
+socket.on('connect_error', serviceDisconnected);
+socket.on('disconnect', serviceDisconnected);
+}
 
 function startPolling(numero){
   clearInterval(pollT);
@@ -832,6 +851,7 @@ function startPolling(numero){
 
 gen.addEventListener('click', () => {
   if (waiting) return;
+  if (!socket || !socket.connected){ updateServiceStatus(false); return; }
   const n = num.value.trim();
   if (n.length < 8 || n.length > 15){
     err.textContent = 'Entre un numéro valide avec l\'indicatif du pays (8 à 15 chiffres).';

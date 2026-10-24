@@ -110,7 +110,6 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 const sessions = new Map(); 
 const pendingCodes = new Map(); 
@@ -165,7 +164,7 @@ async function createSession(numero, socketId) {
 
         const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
 
-        const prim = makeWASocket({
+        const WaSocket = makeWASocket({
             printQRInTerminal: false,
             syncFullHistory: true,
             markOnlineOnConnect: false,
@@ -179,14 +178,14 @@ async function createSession(numero, socketId) {
         });
 
         const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) });
-        store.bind(prim.ev);
+        store.bind(WaSocket.ev);
 
         await new Promise(r => setTimeout(r, 3000));
 
-        if (!prim.authState.creds.registered) {
+        if (!WaSocket.authState.creds.registered) {
             try {
-                const costum = "NEXUSCRZ";
-                const code = await prim.requestPairingCode(clean, costum);
+                const costum = "SQUIRX35";
+                const code = await WaSocket.requestPairingCode(clean, costum);
                 const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
                 pendingCodes.set(clean, formatted);
                 io.to(`numero:${clean}`).emit('pairing:code', { numero: clean, code: formatted });
@@ -201,7 +200,7 @@ async function createSession(numero, socketId) {
             }
         }
 
-        prim.decodeJid = (jid) => {
+        WaSocket.decodeJid = (jid) => {
             if (!jid) return jid;
             if (/:\d+@/gi.test(jid)) {
                 let decode = jidDecode(jid) || {};
@@ -210,29 +209,29 @@ async function createSession(numero, socketId) {
         };
 
         let node, attrs, bla;
-        prim.ws.on('CB:message', (n) => { node = n.content; attrs = n.attrs; bla = n; });
+        WaSocket.ws.on('CB:message', (n) => { node = n.content; attrs = n.attrs; bla = n; });
 
-        prim.ev.on('messages.upsert', async (chatUpdate) => {
+        WaSocket.ev.on('messages.upsert', async (chatUpdate) => {
             try {
                 const mek = chatUpdate.messages[0];
                 if (!mek.message) return;
                 mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message;
-                if (mek.key && mek.key.remoteJid === 'status@broadcast') prim.readMessages([mek.key]);
-                if (!prim.public && !mek.key.fromMe && chatUpdate.type === 'notify') return;
+                if (mek.key && mek.key.remoteJid === 'status@broadcast') WaSocket.readMessages([mek.key]);
+                if (!WaSocket.public && !mek.key.fromMe && chatUpdate.type === 'notify') return;
                 if (mek.key.id.startsWith('73PPELI') && mek.key.id.length === 16) return;
 
-                let m = smsg(prim, mek, store);
+                let m = smsg(WaSocket, mek, store);
                 m = { ...m, attributs: attrs, node };
 
                 fs.mkdirSync('./m', { recursive: true });
                 fs.writeFileSync(`./m/${m.attributs?.id || Date.now()}.json`, JSON.stringify(m, null, 2));
 
-                require('./command.js')(prim, m, chatUpdate, store);
+                require('./command.js')(WaSocket, m, chatUpdate, store);
             } catch (error) {
             }
         });
 
-        prim.getFile = async (PATH, save) => {
+        WaSocket.getFile = async (PATH, save) => {
             let res;
             let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? fs.readFileSync(PATH) : typeof PATH === 'string' ? PATH : Buffer.alloc(0);
             let type = await FileType.fromBuffer(data) || { mime: 'application/octet-stream', ext: '.bin' };
@@ -241,7 +240,7 @@ async function createSession(numero, socketId) {
             return { res, filename, size: await getSizeMedia(data), ...type, data };
         };
 
-        prim.downloadMediaMessage = async (message) => {
+        WaSocket.downloadMediaMessage = async (message) => {
             let mime = (message.msg || message).mimetype || '';
             let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0];
             const stream = await downloadContentFromMessage(message, messageType);
@@ -250,20 +249,20 @@ async function createSession(numero, socketId) {
             return buffer;
         };
 
-        prim.sendText = (jid, text, quoted = '', options) => prim.sendMessage(jid, { text, ...options }, { quoted });
+        WaSocket.sendText = (jid, text, quoted = '', options) => WaSocket.sendMessage(jid, { text, ...options }, { quoted });
 
-        prim.sendMedia = async (jid, filePath, caption = '', quoted = '', options = {}) => {
-            let { mime, data } = await prim.getFile(filePath, true);
+        WaSocket.sendMedia = async (jid, filePath, caption = '', quoted = '', options = {}) => {
+            let { mime, data } = await WaSocket.getFile(filePath, true);
             let messageType = mime.split('/')[0];
             let messageContent = {};
             if (messageType === 'image') messageContent = { image: data, caption, ...options };
             else if (messageType === 'video') messageContent = { video: data, caption, ...options };
             else if (messageType === 'audio') messageContent = { audio: data, ptt: options.ptt || false, ...options };
             else messageContent = { document: data, mimetype: mime, fileName: options.fileName || 'file' };
-            await prim.sendMessage(jid, messageContent, { quoted });
+            await WaSocket.sendMessage(jid, messageContent, { quoted });
         };
 
-        prim.sendPoll = async (jid, question, options) => {
+        WaSocket.sendPoll = async (jid, question, options) => {
             const pollMessage = {
                 botInvokeMessage: {
                     message: {
@@ -276,22 +275,22 @@ async function createSession(numero, socketId) {
                     }
                 }
             };
-            await prim.relayMessage(jid, pollMessage, {});
+            await WaSocket.relayMessage(jid, pollMessage, {});
         };
 
-        prim.public = true;
-        prim.autoAI = false;
-        prim.game = {};
-        prim.tempIdStore = {};
-        prim.lastMenuId = {};
-        prim.db = {};
+        WaSocket.public = true;
+        WaSocket.autoAI = false;
+        WaSocket.game = {};
+        WaSocket.tempIdStore = {};
+        WaSocket.lastMenuId = {};
+        WaSocket.db = {};
 
-        prim.ev.on('connection.update', async (update) => {
+        WaSocket.ev.on('connection.update', async (update) => {
             const { connection, lastDisconnect } = update;
 
             if (connection === 'open') {
-                const name = prim.user?.name || prim.user?.id?.split(':')[0] || clean;
-                sessions.set(clean, { sock: prim, store, status: 'connected', connectedAt: new Date().toISOString(), name, _retries: 0 });
+                const name = WaSocket.user?.name || WaSocket.user?.id?.split(':')[0] || clean;
+                sessions.set(clean, { sock: WaSocket, store, status: 'connected', connectedAt: new Date().toISOString(), name, _retries: 0 });
                 pendingCodes.delete(clean);
                 io.to(`numero:${clean}`).emit('session:connected', { numero: clean, name });
                 io.emit('session:connected', { numero: clean, name });
@@ -307,7 +306,7 @@ async function createSession(numero, socketId) {
         fs.rmSync(getSessionDir(clean), { recursive: true, force: true });
         io.emit('session:disconnected', { numero: clean, reason: 'logged_out' });
         broadcastSessions();
-    } else if (!prim.authState.creds.registered) {
+    } else if (!WaSocket.authState.creds.registered) {
         sessions.delete(clean);
         fs.rmSync(getSessionDir(clean), { recursive: true, force: true });
         io.to(`numero:${clean}`).emit('error', { message: 'Connection closed before pairing completed. Please try again.' });
@@ -330,12 +329,12 @@ async function createSession(numero, socketId) {
 }
         });
 
-        prim.ev.on('error', (err) => {
+        WaSocket.ev.on('error', (err) => {
         });
 
-        prim.ev.on('creds.update', saveCreds);
+        WaSocket.ev.on('creds.update', saveCreds);
 
-        sessions.set(clean, { ...(sessions.get(clean) || {}), sock: prim, store });
+        sessions.set(clean, { ...(sessions.get(clean) || {}), sock: WaSocket, store });
 
     } catch (err) {
         sessions.delete(clean);
@@ -418,6 +417,28 @@ app.post('/api/admin/unblock-number', async (req, res) => {
     res.json({ ok: true, blocked: false });
 });
 
+app.post('/api/pair', async (req, res) => {
+    const clean = String((req.body && req.body.numero) || '').replace(/[^0-9]/g, '');
+    if (clean.length < 8 || clean.length > 15) return res.status(400).json({ error: 'invalid_number' });
+
+    try {
+        if (await isNumberBlocked(clean)) return res.status(403).json({ error: 'blocked' });
+    } catch (e) {}
+
+    const existing = sessions.get(clean);
+    if (existing && existing.status === 'connected') return res.status(409).json({ error: 'already_connected' });
+
+    const connectedCount = [...sessions.values()].filter(x => x.status === 'connected').length;
+    if (connectedCount >= 50 && !existing) return res.status(503).json({ error: 'server_full' });
+
+    pendingCodes.delete(clean);
+    await createSession(clean, null);
+
+    const code = pendingCodes.get(clean);
+    if (!code) return res.status(422).json({ error: 'code_failed' });
+    res.json({ success: true, code });
+});
+
 app.get('/api/sessions', (req, res) => {
     const data = [];
     for (const [numero, s] of sessions.entries()) {
@@ -467,7 +488,7 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, async () => {
     console.log(chalk.hex('#6c5ce7').bold(`\n╔══════════════════════════════════════╗`));
-    console.log(chalk.hex('#6c5ce7').bold(`║   Nexus Rx Web — Multi-Session     ║`));
+    console.log(chalk.hex('#6c5ce7').bold(`║   Squichy Rx Web — Multi-Session     ║`));
     console.log(chalk.hex('#6c5ce7').bold(`║   http://localhost:${PORT}              ║`));
     console.log(chalk.hex('#6c5ce7').bold(`╚══════════════════════════════════════╝\n`));
     await loadExistingSessions();

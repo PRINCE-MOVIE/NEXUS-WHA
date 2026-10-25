@@ -62,10 +62,10 @@
   }
   .dots:hover,.dots[aria-expanded="true"]{border-color:var(--gold-300);box-shadow:0 0 18px rgba(247,210,106,.35)}
   .dots[aria-expanded="true"]{transform:rotate(90deg)}
-  .dots:focus-visible,.langbtn:focus-visible,.langs button:focus-visible,.btn:focus-visible,input:focus-visible,.close:focus-visible,.menu-list button:focus-visible,summary:focus-visible,.social a:focus-visible,.chip:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px}
+  .dots:focus-visible,.btn:focus-visible,input:focus-visible,.close:focus-visible,.menu-list button:focus-visible,summary:focus-visible,.social a:focus-visible,.chip:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px}
   .dots i{display:block;width:5px;height:5px;border-radius:50%;background:var(--gold-300);margin:0 auto}
   .menu-list{
-    position:absolute;top:56px;inset-inline-start:0;width:272px;max-height:calc(100vh - 100px);overflow:auto;
+    position:absolute;top:56px;left:0;width:272px;max-height:calc(100vh - 100px);overflow:auto;
     background:rgba(16,12,6,.96);border:1px solid var(--line);border-radius:16px;
     padding:8px;display:none;backdrop-filter:blur(12px);
     box-shadow:0 18px 50px rgba(0,0,0,.65), 0 0 40px rgba(224,168,46,.08);
@@ -76,14 +76,14 @@
   .menu-title{padding:8px 12px 6px;font-size:.74rem;letter-spacing:.14em;color:var(--muted);font-weight:600}
   .menu-sep{height:1px;margin:6px 8px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
   .menu-list button{
-    width:100%;display:flex;align-items:center;gap:12px;text-align:start;background:none;border:0;color:var(--ink);
+    width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:none;border:0;color:var(--ink);
     font:600 .92rem 'Outfit',sans-serif;letter-spacing:.05em;
     padding:11px 12px;border-radius:10px;cursor:pointer;
     transition:background .15s, color .15s;
   }
   .menu-list button svg{flex:none;width:20px;height:20px;color:var(--gold-500)}
   .menu-list button:hover{background:rgba(224,168,46,.14);color:var(--gold-100)}
-  .menu-list button .tail{margin-inline-start:auto;font-size:.72rem;font-weight:600;color:var(--gold-300);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+  .menu-list button .tail{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--gold-300);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
   .menu-list button .tail.off{color:var(--muted)}
 
   main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:96px 20px 40px;display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -125,7 +125,7 @@
   .card h2{font-family:'Cinzel',Georgia,serif;font-size:1.4rem;color:var(--gold-300);letter-spacing:.04em}
   .card p.sub{margin-top:6px;color:var(--muted);font-size:.95rem}
 
-  label{display:block;text-align:start;margin:24px 0 8px;font-size:.9rem;color:var(--gold-100);font-weight:600}
+  label{display:block;text-align:left;margin:24px 0 8px;font-size:.9rem;color:var(--gold-100);font-weight:600}
   .field{
     display:flex;align-items:center;gap:10px;
     background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:14px;padding:0 16px;
@@ -138,8 +138,8 @@
     font:400 1.1rem 'Outfit',sans-serif;letter-spacing:.04em;padding:16px 0;
   }
   input::placeholder{color:#6d6347}
-  .hint{text-align:start;margin-top:8px;font-size:.82rem;color:var(--muted)}
-  .error{text-align:start;margin-top:8px;font-size:.88rem;color:#ff9b7a;min-height:1.2em}
+  .hint{text-align:left;margin-top:8px;font-size:.82rem;color:var(--muted)}
+  .error{text-align:left;margin-top:8px;font-size:.88rem;color:#ff9b7a;min-height:1.2em}
 
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -164,7 +164,7 @@
 
   .result{display:none;margin-top:26px}
   .result.show{display:block}
-  .code{direction:ltr;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:nowrap}
+  .code{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:nowrap}
   .code b{
     width:clamp(30px,9.5vw,46px);height:clamp(44px,12vw,58px);display:grid;place-items:center;
     font:800 clamp(1.3rem,5.5vw,1.9rem) 'Cinzel',Georgia,serif;color:var(--gold-100);
@@ -178,7 +178,7 @@
   .okmsg{display:none;padding:18px 16px;border-radius:14px;background:rgba(123,224,161,.08);border:1px solid rgba(123,224,161,.4);color:var(--ok);font-weight:600;line-height:1.4}
   .result.done .okmsg{display:block}
   .result.done .code,.result.done #copy,.result.done ol.steps{display:none}
-  ol.steps{margin:22px 0 0;margin-inline-start:20px;text-align:start;color:var(--muted);font-size:.93rem}
+  ol.steps{margin:22px 0 0 20px;text-align:left;color:var(--muted);font-size:.93rem}
   ol.steps li{margin-bottom:6px;padding-left:4px}
   ol.steps strong{color:var(--gold-100);font-weight:600}
 
@@ -193,7 +193,7 @@
   .rule::after{transform:scaleX(-1)}
   .rule svg{width:14px;height:14px}
 
-  .grid{margin-top:28px;display:grid;gap:14px;grid-template-columns:repeat(3,1fr);text-align:start}
+  .grid{margin-top:28px;display:grid;gap:14px;grid-template-columns:repeat(3,1fr);text-align:left}
   .step{
     position:relative;padding:22px 20px 20px;border-radius:18px;
     background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
@@ -223,7 +223,7 @@
   .feat h3{font-size:1rem;color:var(--gold-100);font-weight:600}
   .feat p{font-size:.88rem;color:var(--muted);margin-top:2px}
 
-  .faq{margin-top:26px;display:grid;gap:10px;text-align:start}
+  .faq{margin-top:26px;display:grid;gap:10px;text-align:left}
   details{
     border-radius:16px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
     transition:border-color .2s;
@@ -285,16 +285,16 @@
     border:1px solid var(--gold-500);border-radius:22px;padding:32px 26px 28px;
     box-shadow:0 0 60px rgba(224,168,46,.25);animation:pop .22s ease-out;
   }
-  .modal h3{font-family:'Cinzel',Georgia,serif;font-size:1.4rem;color:var(--gold-300);margin-bottom:14px;letter-spacing:.05em;padding-inline-end:34px}
+  .modal h3{font-family:'Cinzel',Georgia,serif;font-size:1.4rem;color:var(--gold-300);margin-bottom:14px;letter-spacing:.05em;padding-right:34px}
   .modal p{color:var(--ink);font-size:.98rem;margin-bottom:12px}
-  .modal ul{margin:6px 0 4px;margin-inline-start:20px;color:var(--ink);font-size:.97rem}
+  .modal ul{margin:6px 0 4px 20px;color:var(--ink);font-size:.97rem}
   .modal li{margin-bottom:6px}
   .modal li::marker{color:var(--gold-500)}
-  .modal .num{direction:ltr;unicode-bidi:isolate;font-size:1.25rem;font-weight:600;letter-spacing:.06em;color:var(--gold-100);margin:6px 0 4px}
+  .modal .num{font-size:1.25rem;font-weight:600;letter-spacing:.06em;color:var(--gold-100);margin:6px 0 4px}
   .modal .brand{text-align:center;margin:6px 0 16px}
   .modal .brand svg{width:64px;height:64px;filter:drop-shadow(0 0 14px rgba(247,210,106,.55))}
   .close{
-    position:absolute;top:12px;inset-inline-end:12px;width:36px;height:36px;border-radius:50%;
+    position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;
     background:none;border:1px solid var(--line);color:var(--gold-300);font-size:1.2rem;cursor:pointer;
   }
   .close:hover{border-color:var(--gold-300)}
@@ -321,26 +321,6 @@
   .totop:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px}
   .totop svg{width:20px;height:20px}
 
-  .right{display:flex;align-items:flex-start;gap:8px}
-  .langbtn{
-    height:46px;min-width:46px;padding:0 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:7px;
-    background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);cursor:pointer;
-    color:var(--gold-100);font:600 .82rem 'Outfit',sans-serif;letter-spacing:.06em;
-    transition:border-color .2s, box-shadow .2s;
-  }
-  .langbtn:hover{border-color:var(--gold-300);box-shadow:0 0 18px rgba(247,210,106,.35)}
-  .langbtn svg{width:19px;height:19px;color:var(--gold-300)}
-  .langs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:6px}
-  .langs button{
-    display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 14px;border-radius:12px;
-    background:rgba(224,168,46,.07);border:1px solid rgba(224,168,46,.18);color:var(--ink);
-    font:600 .95rem 'Outfit',system-ui,sans-serif;cursor:pointer;text-align:start;
-    transition:border-color .15s, background .15s;
-  }
-  .langs button:hover{border-color:var(--gold-300);background:rgba(224,168,46,.14)}
-  .langs button[aria-current="true"]{border-color:var(--gold-300);background:rgba(224,168,46,.18);color:var(--gold-100)}
-  .langs button[aria-current="true"]::after{content:"✓";color:var(--gold-300)}
-
   @media (max-width:640px){
     .grid,.grid.feat{grid-template-columns:1fr}
     .status span.long{display:none}
@@ -357,73 +337,65 @@
 <div id="flash" aria-hidden="true"></div>
 
 <div class="topbar">
-  <nav class="menu" aria-label="Menu principal" data-i18n-aria="menuAria">
-    <button class="dots" id="dots" aria-label="Ouvrir le menu" data-i18n-aria="openMenu" aria-haspopup="true" aria-expanded="false">
+  <nav class="menu" aria-label="Menu principal">
+    <button class="dots" id="dots" aria-label="Ouvrir le menu" aria-haspopup="true" aria-expanded="false">
       <i></i><i></i><i></i>
     </button>
     <div class="menu-list" id="menuList" role="menu">
-      <p class="menu-title" data-i18n="navT">NAVIGATION</p>
+      <p class="menu-title">NAVIGATION</p>
       <button role="menuitem" data-go="top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-        <span data-i18n="home">ACCUEIL</span>
+        ACCUEIL
       </button>
       <button role="menuitem" data-go="pair">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-        <span data-i18n="connect">CONNECTER MON WHATSAPP</span>
+        CONNECTER MON WHATSAPP
       </button>
       <button role="menuitem" data-go="how">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
-        <span data-i18n="how">COMMENT ÇA MARCHE</span>
+        COMMENT ÇA MARCHE
       </button>
       <button role="menuitem" data-go="faq">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7"/><path d="M12 17h.01"/></svg>
-        <span data-i18n="faq">FAQ</span>
+        FAQ
       </button>
       <div class="menu-sep"></div>
-      <p class="menu-title" data-i18n="aboutT">À PROPOS</p>
+      <p class="menu-title">À PROPOS</p>
       <button role="menuitem" data-open="infos">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>
-        <span data-i18n="infos">INFOS</span>
+        INFOS
       </button>
       <button role="menuitem" data-open="securite">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-        <span data-i18n="security">SÉCURITÉ &amp; CONSEILS</span>
+        SÉCURITÉ &amp; CONSEILS
       </button>
       <button role="menuitem" data-open="contact">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
-        <span data-i18n="contact">OWNER CONTACT</span>
+        OWNER CONTACT
       </button>
       <button role="menuitem" data-open="about">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
         MADE BY PRINCE TECH
       </button>
       <div class="menu-sep"></div>
-      <p class="menu-title" data-i18n="toolsT">OUTILS</p>
+      <p class="menu-title">OUTILS</p>
       <button role="menuitem" data-act="share">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
-        <span data-i18n="share">PARTAGER LE SITE</span>
+        PARTAGER LE SITE
       </button>
       <button role="menuitem" data-act="copylink">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
-        <span data-i18n="copylink">COPIER LE LIEN</span>
-      </button>
-      <button role="menuitem" data-open="lang">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>
-        <span data-i18n="lang">LANGUE</span>
-        <span class="tail" id="langTail">FR</span>
+        COPIER LE LIEN
       </button>
       <button role="menuitem" data-act="fx" id="fxBtn" aria-pressed="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-        <span data-i18n="fx">ÉCLAIRS</span>
+        ÉCLAIRS
         <span class="tail" id="fxTail">ON</span>
       </button>
     </div>
   </nav>
 
-  <div class="right">
-    <button class="langbtn" id="langBtn" data-open="lang" aria-haspopup="dialog" aria-label="Langue" data-i18n-aria="langT"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg><span id="langCode">FR</span></button>
-    <div class="status" role="status"><i aria-hidden="true"></i><span><span data-i18n="online">EN LIGNE</span><span class="long" data-i18n="online2"> · prêt à connecter</span></span></div>
-  </div>
+  <div class="status" role="status"><i aria-hidden="true"></i><span>EN LIGNE<span class="long"> · prêt à connecter</span></span></div>
 </div>
 
 <main id="top">
@@ -438,89 +410,89 @@
   </svg>
 
   <h1>NEXUS CRASH</h1>
-  <p class="tag" data-i18n="tag">Le bot WhatsApp qui se connecte à ton compte en quelques secondes.</p>
+  <p class="tag">Le bot WhatsApp qui se connecte à ton compte en quelques secondes.</p>
 
   <div class="badges">
-    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><span data-i18n="chip1">Connexion rapide</span></span>
-    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><span data-i18n="chip2">Déconnexion à tout moment</span></span>
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Connexion rapide</span>
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Déconnexion à tout moment</span>
   </div>
 
   <section class="card" id="pair" aria-labelledby="t-pair">
-    <h2 id="t-pair" data-i18n="pairT">Connecter mon WhatsApp</h2>
-    <p class="sub" data-i18n="pairSub">Entre ton numéro, récupère ton code, saisis-le dans WhatsApp.</p>
+    <h2 id="t-pair">Connecter mon WhatsApp</h2>
+    <p class="sub">Entre ton numéro, récupère ton code, saisis-le dans WhatsApp.</p>
 
-    <label for="num" data-i18n="label">Ton numéro WhatsApp</label>
+    <label for="num">Ton numéro WhatsApp</label>
     <div class="field">
       <span>+</span>
-      <input id="num" dir="ltr" type="tel" inputmode="numeric" autocomplete="tel" placeholder="243 8X XXX XXXX" maxlength="20">
+      <input id="num" type="tel" inputmode="numeric" autocomplete="tel" placeholder="243 8X XXX XXXX" maxlength="20">
     </div>
-    <p class="hint" data-i18n="hint">Avec l'indicatif du pays, sans le 0 ni espaces. Exemple : 243812345678</p>
+    <p class="hint">Avec l'indicatif du pays, sans le 0 ni espaces. Exemple : 243812345678</p>
     <p class="error" id="err" role="alert"></p>
 
-    <button class="btn shine" id="gen" data-i18n="gen">Générer mon code</button>
+    <button class="btn shine" id="gen">Générer mon code</button>
 
     <div class="result" id="result" aria-live="polite">
-      <p class="okmsg" id="okmsg" data-i18n="ok">Ton WhatsApp est connecté. Le bot est actif.</p>
+      <p class="okmsg" id="okmsg">Ton WhatsApp est connecté. Le bot est actif.</p>
       <div class="code" id="code"></div>
-      <button class="btn ghost" id="copy" data-i18n="copy">Copier le code</button>
+      <button class="btn ghost" id="copy">Copier le code</button>
       <ol class="steps">
-        <li data-i18n-html="s1">Ouvre <strong>WhatsApp</strong> sur ton téléphone.</li>
-        <li data-i18n-html="s2">Va dans <strong>Paramètres › Appareils connectés</strong>.</li>
-        <li data-i18n-html="s3">Touche <strong>Connecter un appareil</strong>, puis <strong>Connecter avec un numéro de téléphone</strong>.</li>
-        <li data-i18n="s4">Saisis le code affiché ci-dessus.</li>
+        <li>Ouvre <strong>WhatsApp</strong> sur ton téléphone.</li>
+        <li>Va dans <strong>Paramètres › Appareils connectés</strong>.</li>
+        <li>Touche <strong>Connecter un appareil</strong>, puis <strong>Connecter avec un numéro de téléphone</strong>.</li>
+        <li>Saisis le code affiché ci-dessus.</li>
       </ol>
     </div>
   </section>
 
   <section class="block" id="how" aria-labelledby="t-how">
-    <h2 id="t-how" data-i18n="howT">Comment ça marche</h2>
+    <h2 id="t-how">Comment ça marche</h2>
     <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-    <p class="lead" data-i18n="howLead">Trois étapes, moins d'une minute.</p>
+    <p class="lead">Trois étapes, moins d'une minute.</p>
     <div class="grid">
-      <div class="step"><div class="n">1</div><h3 data-i18n="h1">Entre ton numéro</h3><p data-i18n="p1">Avec l'indicatif du pays, sans le 0 ni espaces.</p></div>
-      <div class="step"><div class="n">2</div><h3 data-i18n="h2">Génère ton code</h3><p data-i18n="p2">Un code à 8 caractères s'affiche, prêt à copier.</p></div>
-      <div class="step"><div class="n">3</div><h3 data-i18n="h3">Saisis-le dans WhatsApp</h3><p data-i18n="p3">Dans Appareils connectés, et le bot est actif.</p></div>
+      <div class="step"><div class="n">1</div><h3>Entre ton numéro</h3><p>Avec l'indicatif du pays, sans le 0 ni espaces.</p></div>
+      <div class="step"><div class="n">2</div><h3>Génère ton code</h3><p>Un code à 8 caractères s'affiche, prêt à copier.</p></div>
+      <div class="step"><div class="n">3</div><h3>Saisis-le dans WhatsApp</h3><p>Dans Appareils connectés, et le bot est actif.</p></div>
     </div>
   </section>
 
   <section class="block" id="why" aria-labelledby="t-why">
-    <h2 id="t-why" data-i18n="whyT">Pourquoi NEXUS CRASH</h2>
+    <h2 id="t-why">Pourquoi NEXUS CRASH</h2>
     <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
     <div class="grid feat">
       <div class="item">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-        <div><h3 data-i18n="f1h">Rapide</h3><p data-i18n="f1p">Ton compte est connecté en quelques secondes.</p></div>
+        <div><h3>Rapide</h3><p>Ton compte est connecté en quelques secondes.</p></div>
       </div>
       <div class="item">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></div>
-        <div><h3 data-i18n="f2h">Dans tes discussions</h3><p data-i18n="f2p">Le bot répond à tes commandes directement dans WhatsApp.</p></div>
+        <div><h3>Dans tes discussions</h3><p>Le bot répond à tes commandes directement dans WhatsApp.</p></div>
       </div>
       <div class="item">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div><h3 data-i18n="f3h">Tu gardes le contrôle</h3><p data-i18n="f3p">Déconnecte le bot à tout moment depuis WhatsApp.</p></div>
+        <div><h3>Tu gardes le contrôle</h3><p>Déconnecte le bot à tout moment depuis WhatsApp.</p></div>
       </div>
     </div>
   </section>
 
   <section class="block" id="faq" aria-labelledby="t-faq">
-    <h2 id="t-faq" data-i18n="faqT">Questions fréquentes</h2>
+    <h2 id="t-faq">Questions fréquentes</h2>
     <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
     <div class="faq">
       <details>
-        <summary data-i18n="q1">Quel format de numéro dois-je utiliser ?</summary>
-        <p data-i18n="a1">Le numéro complet avec l'indicatif du pays, sans le 0 de tête, sans espaces et sans le signe +. Exemple : 243812345678.</p>
+        <summary>Quel format de numéro dois-je utiliser ?</summary>
+        <p>Le numéro complet avec l'indicatif du pays, sans le 0 de tête, sans espaces et sans le signe +. Exemple : 243812345678.</p>
       </details>
       <details>
-        <summary data-i18n="q2">Où dois-je saisir le code ?</summary>
-        <p data-i18n="a2">Dans WhatsApp, ouvre Paramètres › Appareils connectés › Connecter un appareil, puis choisis « Connecter avec un numéro de téléphone » et entre le code.</p>
+        <summary>Où dois-je saisir le code ?</summary>
+        <p>Dans WhatsApp, ouvre Paramètres › Appareils connectés › Connecter un appareil, puis choisis « Connecter avec un numéro de téléphone » et entre le code.</p>
       </details>
       <details>
-        <summary data-i18n="q3">Le code ne fonctionne pas, que faire ?</summary>
-        <p data-i18n="a3">Vérifie ton numéro, génère un nouveau code et saisis-le rapidement. Si le souci continue, écris au propriétaire depuis le menu (OWNER CONTACT).</p>
+        <summary>Le code ne fonctionne pas, que faire ?</summary>
+        <p>Vérifie ton numéro, génère un nouveau code et saisis-le rapidement. Si le souci continue, écris au propriétaire depuis le menu (OWNER CONTACT).</p>
       </details>
       <details>
-        <summary data-i18n="q4">Comment déconnecter le bot ?</summary>
-        <p data-i18n="a4">Ouvre WhatsApp › Paramètres › Appareils connectés, touche l'appareil du bot, puis choisis Se déconnecter. Tu peux le faire quand tu veux.</p>
+        <summary>Comment déconnecter le bot ?</summary>
+        <p>Ouvre WhatsApp › Paramètres › Appareils connectés, touche l'appareil du bot, puis choisis Se déconnecter. Tu peux le faire quand tu veux.</p>
       </details>
     </div>
   </section>
@@ -529,20 +501,20 @@
 <footer>
   <p class="made">MADE BY PRINCE TECH</p>
   <div class="social">
-    <a href="https://wa.me/243860885022" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp" data-i18n-aria="waAria">
+    <a href="https://wa.me/243860885022" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.3c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
     </a>
   </div>
   <div class="foot-links">
-    <button data-open="infos" data-i18n="fInfos">Infos</button>
-    <button data-open="securite" data-i18n="fSec">Sécurité</button>
-    <button data-open="contact" data-i18n="fContact">Contact</button>
-    <button data-open="about" data-i18n="fAbout">À propos</button>
+    <button data-open="infos">Infos</button>
+    <button data-open="securite">Sécurité</button>
+    <button data-open="contact">Contact</button>
+    <button data-open="about">À propos</button>
   </div>
-  <p class="copy">© <span id="year">2026</span> <b>NEXUS CRASH</b> · <span data-i18n="rights">Tous droits réservés</span></p>
+  <p class="copy">© <span id="year">2026</span> <b>NEXUS CRASH</b> · Tous droits réservés</p>
 </footer>
 
-<button class="totop" id="totop" aria-label="Retour en haut" data-i18n-aria="toTop">
+<button class="totop" id="totop" aria-label="Retour en haut">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
 </button>
 
@@ -550,119 +522,65 @@
 
 <div class="overlay" id="m-contact" role="dialog" aria-modal="true" aria-labelledby="h-contact">
   <div class="modal">
-    <button class="close" data-close aria-label="Fermer" data-i18n-aria="close">✕</button>
-    <h3 id="h-contact" data-i18n="contact">OWNER CONTACT</h3>
-    <p data-i18n="contactP">Une question, un souci de connexion ou une demande ? Écris directement au propriétaire sur WhatsApp.</p>
+    <button class="close" data-close aria-label="Fermer">✕</button>
+    <h3 id="h-contact">OWNER CONTACT</h3>
+    <p>Une question, un souci de connexion ou une demande ? Écris directement au propriétaire sur WhatsApp.</p>
     <p class="num">+243 860 885 022</p>
     <a class="btn" href="https://wa.me/243860885022" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.3c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
       +243860885022
     </a>
-    <button class="btn ghost" data-act="copynum" data-i18n="copyNum">Copier le numéro</button>
+    <button class="btn ghost" data-act="copynum">Copier le numéro</button>
   </div>
 </div>
 
 <div class="overlay" id="m-infos" role="dialog" aria-modal="true" aria-labelledby="h-infos">
   <div class="modal">
-    <button class="close" data-close aria-label="Fermer" data-i18n-aria="close">✕</button>
-    <h3 id="h-infos" data-i18n="infos">INFOS</h3>
-    <p data-i18n-html="infosP1"><strong>NEXUS CRASH</strong> est un bot WhatsApp : une fois ton compte connecté, il répond à tes commandes directement dans tes discussions.</p>
-    <p data-i18n="infosP2">Pour le connecter :</p>
+    <button class="close" data-close aria-label="Fermer">✕</button>
+    <h3 id="h-infos">INFOS</h3>
+    <p><strong>NEXUS CRASH</strong> est un bot WhatsApp : une fois ton compte connecté, il répond à tes commandes directement dans tes discussions.</p>
+    <p>Pour le connecter :</p>
     <ul>
-      <li data-i18n="il1">Saisis ton numéro sur cette page.</li>
-      <li data-i18n="il2">Génère ton code de jumelage.</li>
-      <li data-i18n="il3">Entre ce code dans WhatsApp, dans Appareils connectés.</li>
+      <li>Saisis ton numéro sur cette page.</li>
+      <li>Génère ton code de jumelage.</li>
+      <li>Entre ce code dans WhatsApp, dans Appareils connectés.</li>
     </ul>
-    <p style="margin-top:12px" data-i18n="infosP3">Tu restes maître de ton compte : tu peux déconnecter le bot à tout moment depuis WhatsApp. Utilise-le de façon responsable et dans le respect des règles de WhatsApp.</p>
+    <p style="margin-top:12px">Tu restes maître de ton compte : tu peux déconnecter le bot à tout moment depuis WhatsApp. Utilise-le de façon responsable et dans le respect des règles de WhatsApp.</p>
   </div>
 </div>
 
 <div class="overlay" id="m-securite" role="dialog" aria-modal="true" aria-labelledby="h-securite">
   <div class="modal">
-    <button class="close" data-close aria-label="Fermer" data-i18n-aria="close">✕</button>
-    <h3 id="h-securite" data-i18n="security">SÉCURITÉ &amp; CONSEILS</h3>
-    <p data-i18n="secP">Quelques bons réflexes pour utiliser le bot sereinement :</p>
+    <button class="close" data-close aria-label="Fermer">✕</button>
+    <h3 id="h-securite">SÉCURITÉ &amp; CONSEILS</h3>
+    <p>Quelques bons réflexes pour utiliser le bot sereinement :</p>
     <ul class="tips">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="t1">Ne partage ton code de jumelage avec personne.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="t2">Vérifie régulièrement la liste de tes Appareils connectés dans WhatsApp.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="t3">Déconnecte l'appareil du bot dès que tu ne l'utilises plus.</span></li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="t4">Respecte les règles de WhatsApp pour protéger ton compte.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Ne partage ton code de jumelage avec personne.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Vérifie régulièrement la liste de tes Appareils connectés dans WhatsApp.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Déconnecte l'appareil du bot dès que tu ne l'utilises plus.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span>Respecte les règles de WhatsApp pour protéger ton compte.</span></li>
     </ul>
   </div>
 </div>
 
 <div class="overlay" id="m-about" role="dialog" aria-modal="true" aria-labelledby="h-about">
   <div class="modal" style="text-align:center">
-    <button class="close" data-close aria-label="Fermer" data-i18n-aria="close">✕</button>
+    <button class="close" data-close aria-label="Fermer">✕</button>
     <div class="brand">
       <svg viewBox="0 0 100 100" aria-hidden="true">
         <polygon points="50,4 92,28 92,72 50,96 8,72 8,28" fill="none" stroke="url(#g)" stroke-width="3"/>
         <polygon points="56,18 30,56 47,56 40,82 70,42 52,42" fill="url(#g)"/>
       </svg>
     </div>
-    <h3 id="h-about" style="padding-inline-end:0">MADE BY PRINCE TECH</h3>
-    <p data-i18n-html="aboutP1">NEXUS CRASH est conçu et maintenu par <strong>PRINCE TECH</strong>.</p>
-    <p style="color:var(--muted);font-size:.9rem" data-i18n="aboutP2">Une idée, un souci ou une demande ? Le propriétaire répond sur WhatsApp.</p>
-    <a class="btn" href="https://wa.me/243860885022" target="_blank" rel="noopener" data-i18n="aboutBtn">Contacter PRINCE TECH</a>
-  </div>
-</div>
-
-<div class="overlay" id="m-lang" role="dialog" aria-modal="true" aria-labelledby="h-lang">
-  <div class="modal">
-    <button class="close" data-close aria-label="Fermer" data-i18n-aria="close">✕</button>
-    <h3 id="h-lang" data-i18n="langT">Langue</h3>
-    <div class="langs" id="langs"></div>
+    <h3 id="h-about" style="padding-right:0">MADE BY PRINCE TECH</h3>
+    <p>NEXUS CRASH est conçu et maintenu par <strong>PRINCE TECH</strong>.</p>
+    <p style="color:var(--muted);font-size:.9rem">Une idée, un souci ou une demande ? Le propriétaire répond sur WhatsApp.</p>
+    <a class="btn" href="https://wa.me/243860885022" target="_blank" rel="noopener">Contacter PRINCE TECH</a>
   </div>
 </div>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-
-const I18N = {"fr": {"title": "NEXUS CRASH — Connecte ton WhatsApp", "desc": "NEXUS CRASH, le bot WhatsApp qui se connecte à ton compte en quelques secondes. Made by PRINCE TECH.", "menuAria": "Menu principal", "openMenu": "Ouvrir le menu", "navT": "NAVIGATION", "aboutT": "À PROPOS", "toolsT": "OUTILS", "home": "ACCUEIL", "connect": "CONNECTER MON WHATSAPP", "how": "COMMENT ÇA MARCHE", "faq": "FAQ", "infos": "INFOS", "security": "SÉCURITÉ & CONSEILS", "contact": "OWNER CONTACT", "share": "PARTAGER LE SITE", "copylink": "COPIER LE LIEN", "fx": "ÉCLAIRS", "lang": "LANGUE", "online": "EN LIGNE", "online2": " · prêt à connecter", "tag": "Le bot WhatsApp qui se connecte à ton compte en quelques secondes.", "chip1": "Connexion rapide", "chip2": "Déconnexion à tout moment", "pairT": "Connecter mon WhatsApp", "pairSub": "Entre ton numéro, récupère ton code, saisis-le dans WhatsApp.", "label": "Ton numéro WhatsApp", "hint": "Avec l'indicatif du pays, sans le 0 ni espaces. Exemple : 243812345678", "gen": "Générer mon code", "genBusy": "Génération en cours…", "ok": "Ton WhatsApp est connecté. Le bot est actif.", "copy": "Copier le code", "copied": "Code copié", "copyFail": "Copie impossible : sélectionne le code", "s1": "Ouvre <strong>WhatsApp</strong> sur ton téléphone.", "s2": "Va dans <strong>Paramètres › Appareils connectés</strong>.", "s3": "Touche <strong>Connecter un appareil</strong>, puis <strong>Connecter avec un numéro de téléphone</strong>.", "s4": "Saisis le code affiché ci-dessus.", "howT": "Comment ça marche", "howLead": "Trois étapes, moins d'une minute.", "h1": "Entre ton numéro", "p1": "Avec l'indicatif du pays, sans le 0 ni espaces.", "h2": "Génère ton code", "p2": "Un code à 8 caractères s'affiche, prêt à copier.", "h3": "Saisis-le dans WhatsApp", "p3": "Dans Appareils connectés, et le bot est actif.", "whyT": "Pourquoi NEXUS CRASH", "f1h": "Rapide", "f1p": "Ton compte est connecté en quelques secondes.", "f2h": "Dans tes discussions", "f2p": "Le bot répond à tes commandes directement dans WhatsApp.", "f3h": "Tu gardes le contrôle", "f3p": "Déconnecte le bot à tout moment depuis WhatsApp.", "faqT": "Questions fréquentes", "q1": "Quel format de numéro dois-je utiliser ?", "a1": "Le numéro complet avec l'indicatif du pays, sans le 0 de tête, sans espaces et sans le signe +. Exemple : 243812345678.", "q2": "Où dois-je saisir le code ?", "a2": "Dans WhatsApp, ouvre Paramètres › Appareils connectés › Connecter un appareil, puis choisis « Connecter avec un numéro de téléphone » et entre le code.", "q3": "Le code ne fonctionne pas, que faire ?", "a3": "Vérifie ton numéro, génère un nouveau code et saisis-le rapidement. Si le souci continue, écris au propriétaire depuis le menu (OWNER CONTACT).", "q4": "Comment déconnecter le bot ?", "a4": "Ouvre WhatsApp › Paramètres › Appareils connectés, touche l'appareil du bot, puis choisis Se déconnecter. Tu peux le faire quand tu veux.", "fInfos": "Infos", "fSec": "Sécurité", "fContact": "Contact", "fAbout": "À propos", "rights": "Tous droits réservés", "waAria": "Contacter sur WhatsApp", "toTop": "Retour en haut", "close": "Fermer", "contactP": "Une question, un souci de connexion ou une demande ? Écris directement au propriétaire sur WhatsApp.", "copyNum": "Copier le numéro", "infosP1": "<strong>NEXUS CRASH</strong> est un bot WhatsApp : une fois ton compte connecté, il répond à tes commandes directement dans tes discussions.", "infosP2": "Pour le connecter :", "il1": "Saisis ton numéro sur cette page.", "il2": "Génère ton code de jumelage.", "il3": "Entre ce code dans WhatsApp, dans Appareils connectés.", "infosP3": "Tu restes maître de ton compte : tu peux déconnecter le bot à tout moment depuis WhatsApp. Utilise-le de façon responsable et dans le respect des règles de WhatsApp.", "secP": "Quelques bons réflexes pour utiliser le bot sereinement :", "t1": "Ne partage ton code de jumelage avec personne.", "t2": "Vérifie régulièrement la liste de tes Appareils connectés dans WhatsApp.", "t3": "Déconnecte l'appareil du bot dès que tu ne l'utilises plus.", "t4": "Respecte les règles de WhatsApp pour protéger ton compte.", "aboutP1": "NEXUS CRASH est conçu et maintenu par <strong>PRINCE TECH</strong>.", "aboutP2": "Une idée, un souci ou une demande ? Le propriétaire répond sur WhatsApp.", "aboutBtn": "Contacter PRINCE TECH", "langT": "Langue", "toastLink": "Lien copié dans le presse-papiers", "fxOn": "Éclairs activés", "fxOff": "Éclairs désactivés", "copyNoDev": "Copie impossible sur cet appareil", "numCopied": "Numéro copié", "connectedToast": "WhatsApp connecté", "shareText": "Connecte ton WhatsApp à NEXUS CRASH en quelques secondes.", "errLen": "Entre un numéro valide avec l'indicatif du pays (8 à 15 chiffres).", "expired": "Le code a expiré. Génère-en un nouveau.", "eCode": "Impossible de générer le code. Vérifie ton numéro et son indicatif.", "eFull": "Tous les serveurs sont occupés pour le moment. Réessaie dans un instant ou contacte le propriétaire.", "eAlready": "Ce numéro est déjà connecté. Déconnecte-le depuis WhatsApp puis réessaie.", "eBlocked": "Ce numéro ne peut pas être utilisé.", "eUnreach": "Le bot ne répond pas pour le moment. Réessaie dans un instant.", "eGeneric": "Une erreur est survenue. Réessaie dans un instant."}, "en": {"title": "NEXUS CRASH — Connect your WhatsApp", "desc": "NEXUS CRASH, the WhatsApp bot that connects to your account in seconds. Made by PRINCE TECH.", "menuAria": "Main menu", "openMenu": "Open menu", "navT": "NAVIGATION", "aboutT": "ABOUT", "toolsT": "TOOLS", "home": "HOME", "connect": "CONNECT MY WHATSAPP", "how": "HOW IT WORKS", "faq": "FAQ", "infos": "INFO", "security": "SECURITY & TIPS", "contact": "OWNER CONTACT", "share": "SHARE THE SITE", "copylink": "COPY LINK", "fx": "LIGHTNING", "lang": "LANGUAGE", "online": "ONLINE", "online2": " · ready to connect", "tag": "The WhatsApp bot that connects to your account in seconds.", "chip1": "Fast connection", "chip2": "Disconnect anytime", "pairT": "Connect my WhatsApp", "pairSub": "Enter your number, get your code, type it in WhatsApp.", "label": "Your WhatsApp number", "hint": "With the country code, without the 0 or spaces. Example: 243812345678", "gen": "Generate my code", "genBusy": "Generating…", "ok": "Your WhatsApp is connected. The bot is active.", "copy": "Copy code", "copied": "Code copied", "copyFail": "Can't copy: select the code", "s1": "Open <strong>WhatsApp</strong> on your phone.", "s2": "Go to <strong>Settings › Linked devices</strong>.", "s3": "Tap <strong>Link a device</strong>, then <strong>Link with phone number</strong>.", "s4": "Enter the code shown above.", "howT": "How it works", "howLead": "Three steps, under a minute.", "h1": "Enter your number", "p1": "With the country code, without the 0 or spaces.", "h2": "Generate your code", "p2": "An 8-character code appears, ready to copy.", "h3": "Enter it in WhatsApp", "p3": "In Linked devices, and the bot is active.", "whyT": "Why NEXUS CRASH", "f1h": "Fast", "f1p": "Your account is connected in seconds.", "f2h": "In your chats", "f2p": "The bot answers your commands right inside WhatsApp.", "f3h": "You stay in control", "f3p": "Disconnect the bot anytime from WhatsApp.", "faqT": "Frequently asked questions", "q1": "Which number format should I use?", "a1": "The full number with the country code, without the leading 0, spaces or + sign. Example: 243812345678.", "q2": "Where do I enter the code?", "a2": "In WhatsApp, open Settings › Linked devices › Link a device, then choose “Link with phone number” and enter the code.", "q3": "The code doesn't work, what now?", "a3": "Check your number, generate a new code and enter it quickly. If the problem continues, message the owner from the menu (OWNER CONTACT).", "q4": "How do I disconnect the bot?", "a4": "Open WhatsApp › Settings › Linked devices, tap the bot's device, then choose Log out. You can do it whenever you want.", "fInfos": "Info", "fSec": "Security", "fContact": "Contact", "fAbout": "About", "rights": "All rights reserved", "waAria": "Contact on WhatsApp", "toTop": "Back to top", "close": "Close", "contactP": "A question, a connection problem or a request? Message the owner directly on WhatsApp.", "copyNum": "Copy number", "infosP1": "<strong>NEXUS CRASH</strong> is a WhatsApp bot: once your account is connected, it answers your commands right in your chats.", "infosP2": "To connect it:", "il1": "Enter your number on this page.", "il2": "Generate your pairing code.", "il3": "Enter this code in WhatsApp, under Linked devices.", "infosP3": "You stay in charge of your account: you can disconnect the bot anytime from WhatsApp. Use it responsibly and in line with WhatsApp's rules.", "secP": "A few good habits to use the bot with peace of mind:", "t1": "Never share your pairing code with anyone.", "t2": "Regularly check the list of your Linked devices in WhatsApp.", "t3": "Disconnect the bot's device as soon as you stop using it.", "t4": "Follow WhatsApp's rules to protect your account.", "aboutP1": "NEXUS CRASH is designed and maintained by <strong>PRINCE TECH</strong>.", "aboutP2": "An idea, a problem or a request? The owner replies on WhatsApp.", "aboutBtn": "Contact PRINCE TECH", "langT": "Language", "toastLink": "Link copied to clipboard", "fxOn": "Lightning on", "fxOff": "Lightning off", "copyNoDev": "Copy not possible on this device", "numCopied": "Number copied", "connectedToast": "WhatsApp connected", "shareText": "Connect your WhatsApp to NEXUS CRASH in seconds.", "errLen": "Enter a valid number with the country code (8 to 15 digits).", "expired": "The code has expired. Generate a new one.", "eCode": "Couldn't generate the code. Check your number and its country code.", "eFull": "All servers are busy right now. Try again in a moment or contact the owner.", "eAlready": "This number is already connected. Disconnect it from WhatsApp and try again.", "eBlocked": "This number can't be used.", "eUnreach": "The bot isn't responding right now. Try again in a moment.", "eGeneric": "Something went wrong. Try again in a moment."}, "es": {"title": "NEXUS CRASH — Conecta tu WhatsApp", "desc": "NEXUS CRASH, el bot de WhatsApp que se conecta a tu cuenta en segundos. Made by PRINCE TECH.", "menuAria": "Menú principal", "openMenu": "Abrir el menú", "navT": "NAVEGACIÓN", "aboutT": "ACERCA DE", "toolsT": "HERRAMIENTAS", "home": "INICIO", "connect": "CONECTAR MI WHATSAPP", "how": "CÓMO FUNCIONA", "faq": "FAQ", "infos": "INFO", "security": "SEGURIDAD Y CONSEJOS", "contact": "CONTACTO DEL DUEÑO", "share": "COMPARTIR EL SITIO", "copylink": "COPIAR ENLACE", "fx": "RAYOS", "lang": "IDIOMA", "online": "EN LÍNEA", "online2": " · listo para conectar", "tag": "El bot de WhatsApp que se conecta a tu cuenta en segundos.", "chip1": "Conexión rápida", "chip2": "Desconecta cuando quieras", "pairT": "Conectar mi WhatsApp", "pairSub": "Escribe tu número, obtén tu código e introdúcelo en WhatsApp.", "label": "Tu número de WhatsApp", "hint": "Con el prefijo del país, sin el 0 ni espacios. Ejemplo: 243812345678", "gen": "Generar mi código", "genBusy": "Generando…", "ok": "Tu WhatsApp está conectado. El bot está activo.", "copy": "Copiar código", "copied": "Código copiado", "copyFail": "No se pudo copiar: selecciona el código", "s1": "Abre <strong>WhatsApp</strong> en tu teléfono.", "s2": "Ve a <strong>Ajustes › Dispositivos vinculados</strong>.", "s3": "Toca <strong>Vincular un dispositivo</strong> y luego <strong>Vincular con el número de teléfono</strong>.", "s4": "Introduce el código mostrado arriba.", "howT": "Cómo funciona", "howLead": "Tres pasos, menos de un minuto.", "h1": "Escribe tu número", "p1": "Con el prefijo del país, sin el 0 ni espacios.", "h2": "Genera tu código", "p2": "Aparece un código de 8 caracteres, listo para copiar.", "h3": "Introdúcelo en WhatsApp", "p3": "En Dispositivos vinculados, y el bot queda activo.", "whyT": "Por qué NEXUS CRASH", "f1h": "Rápido", "f1p": "Tu cuenta se conecta en unos segundos.", "f2h": "En tus chats", "f2p": "El bot responde a tus comandos directamente en WhatsApp.", "f3h": "Tú tienes el control", "f3p": "Desconecta el bot cuando quieras desde WhatsApp.", "faqT": "Preguntas frecuentes", "q1": "¿Qué formato de número debo usar?", "a1": "El número completo con el prefijo del país, sin el 0 inicial, sin espacios y sin el signo +. Ejemplo: 243812345678.", "q2": "¿Dónde introduzco el código?", "a2": "En WhatsApp, abre Ajustes › Dispositivos vinculados › Vincular un dispositivo, elige «Vincular con el número de teléfono» e introduce el código.", "q3": "El código no funciona, ¿qué hago?", "a3": "Comprueba tu número, genera un código nuevo e introdúcelo rápido. Si el problema continúa, escribe al dueño desde el menú (CONTACTO DEL DUEÑO).", "q4": "¿Cómo desconecto el bot?", "a4": "Abre WhatsApp › Ajustes › Dispositivos vinculados, toca el dispositivo del bot y elige Cerrar sesión. Puedes hacerlo cuando quieras.", "fInfos": "Info", "fSec": "Seguridad", "fContact": "Contacto", "fAbout": "Acerca de", "rights": "Todos los derechos reservados", "waAria": "Contactar por WhatsApp", "toTop": "Volver arriba", "close": "Cerrar", "contactP": "¿Una pregunta, un problema de conexión o una petición? Escribe directamente al dueño por WhatsApp.", "copyNum": "Copiar el número", "infosP1": "<strong>NEXUS CRASH</strong> es un bot de WhatsApp: una vez conectada tu cuenta, responde a tus comandos directamente en tus chats.", "infosP2": "Para conectarlo:", "il1": "Escribe tu número en esta página.", "il2": "Genera tu código de vinculación.", "il3": "Introduce ese código en WhatsApp, en Dispositivos vinculados.", "infosP3": "Sigues al mando de tu cuenta: puedes desconectar el bot cuando quieras desde WhatsApp. Úsalo con responsabilidad y respetando las normas de WhatsApp.", "secP": "Algunos buenos hábitos para usar el bot con tranquilidad:", "t1": "No compartas tu código de vinculación con nadie.", "t2": "Revisa con regularidad la lista de tus Dispositivos vinculados en WhatsApp.", "t3": "Desconecta el dispositivo del bot en cuanto dejes de usarlo.", "t4": "Respeta las normas de WhatsApp para proteger tu cuenta.", "aboutP1": "NEXUS CRASH está diseñado y mantenido por <strong>PRINCE TECH</strong>.", "aboutP2": "¿Una idea, un problema o una petición? El dueño responde por WhatsApp.", "aboutBtn": "Contactar con PRINCE TECH", "langT": "Idioma", "toastLink": "Enlace copiado al portapapeles", "fxOn": "Rayos activados", "fxOff": "Rayos desactivados", "copyNoDev": "No se puede copiar en este dispositivo", "numCopied": "Número copiado", "connectedToast": "WhatsApp conectado", "shareText": "Conecta tu WhatsApp a NEXUS CRASH en unos segundos.", "errLen": "Introduce un número válido con el prefijo del país (8 a 15 dígitos).", "expired": "El código ha caducado. Genera uno nuevo.", "eCode": "No se pudo generar el código. Comprueba tu número y su prefijo.", "eFull": "Todos los servidores están ocupados ahora. Inténtalo en un momento o contacta al dueño.", "eAlready": "Este número ya está conectado. Desconéctalo desde WhatsApp e inténtalo de nuevo.", "eBlocked": "Este número no se puede usar.", "eUnreach": "El bot no responde por ahora. Inténtalo de nuevo en un momento.", "eGeneric": "Ocurrió un error. Inténtalo de nuevo en un momento."}, "pt": {"title": "NEXUS CRASH — Conecte seu WhatsApp", "desc": "NEXUS CRASH, o bot de WhatsApp que se conecta à sua conta em segundos. Made by PRINCE TECH.", "menuAria": "Menu principal", "openMenu": "Abrir o menu", "navT": "NAVEGAÇÃO", "aboutT": "SOBRE", "toolsT": "FERRAMENTAS", "home": "INÍCIO", "connect": "CONECTAR MEU WHATSAPP", "how": "COMO FUNCIONA", "faq": "FAQ", "infos": "INFO", "security": "SEGURANÇA E DICAS", "contact": "CONTATO DO DONO", "share": "COMPARTILHAR O SITE", "copylink": "COPIAR LINK", "fx": "RAIOS", "lang": "IDIOMA", "online": "ONLINE", "online2": " · pronto para conectar", "tag": "O bot de WhatsApp que se conecta à sua conta em segundos.", "chip1": "Conexão rápida", "chip2": "Desconecte quando quiser", "pairT": "Conectar meu WhatsApp", "pairSub": "Digite seu número, pegue seu código e insira-o no WhatsApp.", "label": "Seu número do WhatsApp", "hint": "Com o código do país, sem o 0 nem espaços. Exemplo: 243812345678", "gen": "Gerar meu código", "genBusy": "Gerando…", "ok": "Seu WhatsApp está conectado. O bot está ativo.", "copy": "Copiar código", "copied": "Código copiado", "copyFail": "Não foi possível copiar: selecione o código", "s1": "Abra o <strong>WhatsApp</strong> no seu celular.", "s2": "Vá em <strong>Configurações › Aparelhos conectados</strong>.", "s3": "Toque em <strong>Conectar um aparelho</strong> e depois em <strong>Conectar com número de telefone</strong>.", "s4": "Digite o código exibido acima.", "howT": "Como funciona", "howLead": "Três passos, menos de um minuto.", "h1": "Digite seu número", "p1": "Com o código do país, sem o 0 nem espaços.", "h2": "Gere seu código", "p2": "Um código de 8 caracteres aparece, pronto para copiar.", "h3": "Insira no WhatsApp", "p3": "Em Aparelhos conectados, e o bot fica ativo.", "whyT": "Por que NEXUS CRASH", "f1h": "Rápido", "f1p": "Sua conta é conectada em poucos segundos.", "f2h": "Nas suas conversas", "f2p": "O bot responde aos seus comandos direto no WhatsApp.", "f3h": "Você no controle", "f3p": "Desconecte o bot quando quiser pelo WhatsApp.", "faqT": "Perguntas frequentes", "q1": "Qual formato de número devo usar?", "a1": "O número completo com o código do país, sem o 0 inicial, sem espaços e sem o sinal +. Exemplo: 243812345678.", "q2": "Onde insiro o código?", "a2": "No WhatsApp, abra Configurações › Aparelhos conectados › Conectar um aparelho, escolha “Conectar com número de telefone” e digite o código.", "q3": "O código não funciona, o que fazer?", "a3": "Confira seu número, gere um novo código e insira-o rapidamente. Se o problema continuar, escreva ao dono pelo menu (CONTATO DO DONO).", "q4": "Como desconectar o bot?", "a4": "Abra o WhatsApp › Configurações › Aparelhos conectados, toque no aparelho do bot e escolha Desconectar. Você pode fazer isso quando quiser.", "fInfos": "Info", "fSec": "Segurança", "fContact": "Contato", "fAbout": "Sobre", "rights": "Todos os direitos reservados", "waAria": "Entrar em contato pelo WhatsApp", "toTop": "Voltar ao topo", "close": "Fechar", "contactP": "Uma dúvida, um problema de conexão ou um pedido? Escreva direto para o dono no WhatsApp.", "copyNum": "Copiar o número", "infosP1": "<strong>NEXUS CRASH</strong> é um bot de WhatsApp: depois que sua conta é conectada, ele responde aos seus comandos direto nas suas conversas.", "infosP2": "Para conectá-lo:", "il1": "Digite seu número nesta página.", "il2": "Gere seu código de pareamento.", "il3": "Insira esse código no WhatsApp, em Aparelhos conectados.", "infosP3": "Você continua no comando da sua conta: pode desconectar o bot quando quiser pelo WhatsApp. Use com responsabilidade e respeitando as regras do WhatsApp.", "secP": "Alguns bons hábitos para usar o bot com tranquilidade:", "t1": "Não compartilhe seu código de pareamento com ninguém.", "t2": "Confira regularmente a lista de Aparelhos conectados no WhatsApp.", "t3": "Desconecte o aparelho do bot assim que parar de usá-lo.", "t4": "Respeite as regras do WhatsApp para proteger sua conta.", "aboutP1": "NEXUS CRASH é criado e mantido por <strong>PRINCE TECH</strong>.", "aboutP2": "Uma ideia, um problema ou um pedido? O dono responde no WhatsApp.", "aboutBtn": "Falar com PRINCE TECH", "langT": "Idioma", "toastLink": "Link copiado para a área de transferência", "fxOn": "Raios ativados", "fxOff": "Raios desativados", "copyNoDev": "Não é possível copiar neste aparelho", "numCopied": "Número copiado", "connectedToast": "WhatsApp conectado", "shareText": "Conecte seu WhatsApp ao NEXUS CRASH em poucos segundos.", "errLen": "Digite um número válido com o código do país (8 a 15 dígitos).", "expired": "O código expirou. Gere um novo.", "eCode": "Não foi possível gerar o código. Confira seu número e o código do país.", "eFull": "Todos os servidores estão ocupados no momento. Tente de novo em instantes ou fale com o dono.", "eAlready": "Este número já está conectado. Desconecte-o pelo WhatsApp e tente novamente.", "eBlocked": "Este número não pode ser usado.", "eUnreach": "O bot não está respondendo no momento. Tente novamente em instantes.", "eGeneric": "Ocorreu um erro. Tente novamente em instantes."}, "ar": {"title": "NEXUS CRASH — اربط واتساب الخاص بك", "desc": "NEXUS CRASH، بوت واتساب يرتبط بحسابك خلال ثوانٍ. Made by PRINCE TECH.", "menuAria": "القائمة الرئيسية", "openMenu": "فتح القائمة", "navT": "التنقل", "aboutT": "حول", "toolsT": "أدوات", "home": "الرئيسية", "connect": "ربط واتساب الخاص بي", "how": "كيف يعمل", "faq": "الأسئلة الشائعة", "infos": "معلومات", "security": "الأمان والنصائح", "contact": "التواصل مع المالك", "share": "مشاركة الموقع", "copylink": "نسخ الرابط", "fx": "البرق", "lang": "اللغة", "online": "متصل", "online2": " · جاهز للربط", "tag": "بوت واتساب يرتبط بحسابك خلال ثوانٍ.", "chip1": "ربط سريع", "chip2": "افصله في أي وقت", "pairT": "ربط واتساب الخاص بي", "pairSub": "أدخل رقمك، احصل على الرمز، ثم اكتبه في واتساب.", "label": "رقم واتساب الخاص بك", "hint": "مع رمز الدولة، بدون الصفر ولا مسافات. مثال: 243812345678", "gen": "إنشاء الرمز", "genBusy": "جارٍ الإنشاء…", "ok": "تم ربط واتساب الخاص بك. البوت يعمل.", "copy": "نسخ الرمز", "copied": "تم نسخ الرمز", "copyFail": "تعذّر النسخ: حدّد الرمز يدويًا", "s1": "افتح <strong>واتساب</strong> على هاتفك.", "s2": "اذهب إلى <strong>الإعدادات › الأجهزة المرتبطة</strong>.", "s3": "اضغط على <strong>ربط جهاز</strong> ثم <strong>الربط باستخدام رقم الهاتف</strong>.", "s4": "اكتب الرمز الظاهر أعلاه.", "howT": "كيف يعمل", "howLead": "ثلاث خطوات في أقل من دقيقة.", "h1": "أدخل رقمك", "p1": "مع رمز الدولة، بدون الصفر ولا مسافات.", "h2": "أنشئ رمزك", "p2": "يظهر رمز من 8 أحرف جاهز للنسخ.", "h3": "اكتبه في واتساب", "p3": "في الأجهزة المرتبطة، ثم يعمل البوت.", "whyT": "لماذا NEXUS CRASH", "f1h": "سريع", "f1p": "يتم ربط حسابك خلال ثوانٍ.", "f2h": "داخل محادثاتك", "f2p": "يردّ البوت على أوامرك مباشرة داخل واتساب.", "f3h": "أنت المتحكم", "f3p": "افصل البوت في أي وقت من واتساب.", "faqT": "الأسئلة الشائعة", "q1": "ما صيغة الرقم التي يجب استخدامها؟", "a1": "الرقم الكامل مع رمز الدولة، بدون الصفر الأول ولا مسافات ولا علامة +. مثال: 243812345678.", "q2": "أين أكتب الرمز؟", "a2": "في واتساب افتح الإعدادات › الأجهزة المرتبطة › ربط جهاز، ثم اختر «الربط باستخدام رقم الهاتف» واكتب الرمز.", "q3": "الرمز لا يعمل، ماذا أفعل؟", "a3": "تحقق من رقمك، أنشئ رمزًا جديدًا واكتبه بسرعة. إذا استمرت المشكلة، راسل المالك من القائمة (التواصل مع المالك).", "q4": "كيف أفصل البوت؟", "a4": "افتح واتساب › الإعدادات › الأجهزة المرتبطة، اضغط على جهاز البوت ثم اختر تسجيل الخروج. يمكنك فعل ذلك متى شئت.", "fInfos": "معلومات", "fSec": "الأمان", "fContact": "تواصل", "fAbout": "حول", "rights": "جميع الحقوق محفوظة", "waAria": "تواصل عبر واتساب", "toTop": "العودة إلى الأعلى", "close": "إغلاق", "contactP": "لديك سؤال أو مشكلة في الربط أو طلب؟ راسل المالك مباشرة على واتساب.", "copyNum": "نسخ الرقم", "infosP1": "<strong>NEXUS CRASH</strong> هو بوت واتساب: بعد ربط حسابك، يردّ على أوامرك مباشرة داخل محادثاتك.", "infosP2": "لربطه:", "il1": "أدخل رقمك في هذه الصفحة.", "il2": "أنشئ رمز الاقتران.", "il3": "اكتب هذا الرمز في واتساب ضمن الأجهزة المرتبطة.", "infosP3": "تبقى أنت المتحكم بحسابك: يمكنك فصل البوت في أي وقت من واتساب. استخدمه بمسؤولية وبما يتوافق مع قواعد واتساب.", "secP": "بعض العادات الجيدة لاستخدام البوت بأمان:", "t1": "لا تشارك رمز الاقتران مع أي شخص.", "t2": "راجع بانتظام قائمة الأجهزة المرتبطة في واتساب.", "t3": "افصل جهاز البوت فور التوقف عن استخدامه.", "t4": "التزم بقواعد واتساب لحماية حسابك.", "aboutP1": "تم تصميم NEXUS CRASH وصيانته بواسطة <strong>PRINCE TECH</strong>.", "aboutP2": "فكرة أو مشكلة أو طلب؟ المالك يردّ على واتساب.", "aboutBtn": "تواصل مع PRINCE TECH", "langT": "اللغة", "toastLink": "تم نسخ الرابط", "fxOn": "تم تفعيل البرق", "fxOff": "تم إيقاف البرق", "copyNoDev": "النسخ غير ممكن على هذا الجهاز", "numCopied": "تم نسخ الرقم", "connectedToast": "تم ربط واتساب", "shareText": "اربط واتساب بـ NEXUS CRASH خلال ثوانٍ.", "errLen": "أدخل رقمًا صحيحًا مع رمز الدولة (من 8 إلى 15 رقمًا).", "expired": "انتهت صلاحية الرمز. أنشئ رمزًا جديدًا.", "eCode": "تعذّر إنشاء الرمز. تحقق من رقمك ورمز الدولة.", "eFull": "جميع الخوادم مشغولة حاليًا. أعد المحاولة بعد قليل أو تواصل مع المالك.", "eAlready": "هذا الرقم مرتبط بالفعل. افصله من واتساب ثم أعد المحاولة.", "eBlocked": "لا يمكن استخدام هذا الرقم.", "eUnreach": "البوت لا يستجيب حاليًا. أعد المحاولة بعد قليل.", "eGeneric": "حدث خطأ. أعد المحاولة بعد قليل."}, "sw": {"title": "NEXUS CRASH — Unganisha WhatsApp yako", "desc": "NEXUS CRASH, bot ya WhatsApp inayounganishwa na akaunti yako kwa sekunde chache. Made by PRINCE TECH.", "menuAria": "Menyu kuu", "openMenu": "Fungua menyu", "navT": "UABIRI", "aboutT": "KUHUSU", "toolsT": "ZANA", "home": "NYUMBANI", "connect": "UNGANISHA WHATSAPP YANGU", "how": "JINSI INAVYOFANYA KAZI", "faq": "MASWALI", "infos": "TAARIFA", "security": "USALAMA NA USHAURI", "contact": "WASILIANA NA MMILIKI", "share": "SHIRIKI TOVUTI", "copylink": "NAKILI KIUNGO", "fx": "RADI", "lang": "LUGHA", "online": "MTANDAONI", "online2": " · tayari kuunganisha", "tag": "Bot ya WhatsApp inayounganishwa na akaunti yako kwa sekunde chache.", "chip1": "Muunganisho wa haraka", "chip2": "Tenganisha wakati wowote", "pairT": "Unganisha WhatsApp yangu", "pairSub": "Weka namba yako, pata msimbo, kisha uuweke kwenye WhatsApp.", "label": "Namba yako ya WhatsApp", "hint": "Pamoja na msimbo wa nchi, bila 0 wala nafasi. Mfano: 243812345678", "gen": "Tengeneza msimbo wangu", "genBusy": "Inatengeneza…", "ok": "WhatsApp yako imeunganishwa. Bot inafanya kazi.", "copy": "Nakili msimbo", "copied": "Msimbo umenakiliwa", "copyFail": "Imeshindwa kunakili: chagua msimbo", "s1": "Fungua <strong>WhatsApp</strong> kwenye simu yako.", "s2": "Nenda kwenye <strong>Mipangilio › Vifaa vilivyounganishwa</strong>.", "s3": "Gusa <strong>Unganisha kifaa</strong>, kisha <strong>Unganisha kwa namba ya simu</strong>.", "s4": "Weka msimbo ulioonyeshwa hapo juu.", "howT": "Jinsi inavyofanya kazi", "howLead": "Hatua tatu, chini ya dakika moja.", "h1": "Weka namba yako", "p1": "Pamoja na msimbo wa nchi, bila 0 wala nafasi.", "h2": "Tengeneza msimbo wako", "p2": "Msimbo wa herufi 8 unaonekana, tayari kunakiliwa.", "h3": "Uweke kwenye WhatsApp", "p3": "Kwenye Vifaa vilivyounganishwa, kisha bot inaanza kazi.", "whyT": "Kwa nini NEXUS CRASH", "f1h": "Haraka", "f1p": "Akaunti yako inaunganishwa kwa sekunde chache.", "f2h": "Ndani ya mazungumzo yako", "f2p": "Bot hujibu amri zako moja kwa moja ndani ya WhatsApp.", "f3h": "Wewe ndiye unayedhibiti", "f3p": "Tenganisha bot wakati wowote kupitia WhatsApp.", "faqT": "Maswali yanayoulizwa mara kwa mara", "q1": "Nitumie muundo gani wa namba?", "a1": "Namba kamili pamoja na msimbo wa nchi, bila 0 ya mwanzo, bila nafasi na bila alama ya +. Mfano: 243812345678.", "q2": "Ninaweka wapi msimbo?", "a2": "Kwenye WhatsApp, fungua Mipangilio › Vifaa vilivyounganishwa › Unganisha kifaa, chagua “Unganisha kwa namba ya simu” kisha weka msimbo.", "q3": "Msimbo haufanyi kazi, nifanye nini?", "a3": "Angalia namba yako, tengeneza msimbo mpya na uuweke haraka. Tatizo likiendelea, mwandikie mmiliki kupitia menyu (WASILIANA NA MMILIKI).", "q4": "Ninawezaje kutenganisha bot?", "a4": "Fungua WhatsApp › Mipangilio › Vifaa vilivyounganishwa, gusa kifaa cha bot kisha chagua Toka. Unaweza kufanya hivyo wakati wowote.", "fInfos": "Taarifa", "fSec": "Usalama", "fContact": "Mawasiliano", "fAbout": "Kuhusu", "rights": "Haki zote zimehifadhiwa", "waAria": "Wasiliana kupitia WhatsApp", "toTop": "Rudi juu", "close": "Funga", "contactP": "Una swali, tatizo la muunganisho au ombi? Mwandikie mmiliki moja kwa moja kwenye WhatsApp.", "copyNum": "Nakili namba", "infosP1": "<strong>NEXUS CRASH</strong> ni bot ya WhatsApp: akaunti yako ikishaunganishwa, hujibu amri zako moja kwa moja ndani ya mazungumzo yako.", "infosP2": "Ili kuiunganisha:", "il1": "Weka namba yako kwenye ukurasa huu.", "il2": "Tengeneza msimbo wako wa kuunganisha.", "il3": "Weka msimbo huo kwenye WhatsApp, ndani ya Vifaa vilivyounganishwa.", "infosP3": "Unabaki kuwa msimamizi wa akaunti yako: unaweza kutenganisha bot wakati wowote kupitia WhatsApp. Itumie kwa uwajibikaji na kwa kufuata kanuni za WhatsApp.", "secP": "Tabia chache nzuri za kutumia bot kwa utulivu:", "t1": "Usimshirikishe mtu yeyote msimbo wako wa kuunganisha.", "t2": "Angalia mara kwa mara orodha ya Vifaa vilivyounganishwa kwenye WhatsApp.", "t3": "Tenganisha kifaa cha bot mara tu unapoacha kukitumia.", "t4": "Fuata kanuni za WhatsApp ili kulinda akaunti yako.", "aboutP1": "NEXUS CRASH imetengenezwa na kusimamiwa na <strong>PRINCE TECH</strong>.", "aboutP2": "Wazo, tatizo au ombi? Mmiliki hujibu kwenye WhatsApp.", "aboutBtn": "Wasiliana na PRINCE TECH", "langT": "Lugha", "toastLink": "Kiungo kimenakiliwa", "fxOn": "Radi zimewashwa", "fxOff": "Radi zimezimwa", "copyNoDev": "Haiwezekani kunakili kwenye kifaa hiki", "numCopied": "Namba imenakiliwa", "connectedToast": "WhatsApp imeunganishwa", "shareText": "Unganisha WhatsApp yako na NEXUS CRASH kwa sekunde chache.", "errLen": "Weka namba sahihi pamoja na msimbo wa nchi (tarakimu 8 hadi 15).", "expired": "Msimbo umeisha muda. Tengeneza mpya.", "eCode": "Imeshindwa kutengeneza msimbo. Angalia namba yako na msimbo wa nchi.", "eFull": "Seva zote zina shughuli kwa sasa. Jaribu tena baadaye kidogo au wasiliana na mmiliki.", "eAlready": "Namba hii tayari imeunganishwa. Itenganishe kupitia WhatsApp kisha ujaribu tena.", "eBlocked": "Namba hii haiwezi kutumika.", "eUnreach": "Bot haijibu kwa sasa. Jaribu tena baadaye kidogo.", "eGeneric": "Hitilafu imetokea. Jaribu tena baadaye kidogo."}, "hi": {"title": "NEXUS CRASH — अपना WhatsApp कनेक्ट करें", "desc": "NEXUS CRASH, WhatsApp बॉट जो कुछ ही सेकंड में आपके अकाउंट से जुड़ जाता है। Made by PRINCE TECH.", "menuAria": "मुख्य मेनू", "openMenu": "मेनू खोलें", "navT": "नेविगेशन", "aboutT": "जानकारी", "toolsT": "टूल्स", "home": "होम", "connect": "मेरा WHATSAPP कनेक्ट करें", "how": "कैसे काम करता है", "faq": "अक्सर पूछे जाने वाले प्रश्न", "infos": "जानकारी", "security": "सुरक्षा और सुझाव", "contact": "ओनर से संपर्क", "share": "साइट शेयर करें", "copylink": "लिंक कॉपी करें", "fx": "बिजली", "lang": "भाषा", "online": "ऑनलाइन", "online2": " · कनेक्ट करने के लिए तैयार", "tag": "WhatsApp बॉट जो कुछ ही सेकंड में आपके अकाउंट से जुड़ जाता है।", "chip1": "तेज़ कनेक्शन", "chip2": "कभी भी डिस्कनेक्ट करें", "pairT": "मेरा WhatsApp कनेक्ट करें", "pairSub": "अपना नंबर डालें, कोड पाएँ और उसे WhatsApp में डालें।", "label": "आपका WhatsApp नंबर", "hint": "देश कोड के साथ, बिना 0 और स्पेस के। उदाहरण: 243812345678", "gen": "मेरा कोड बनाएँ", "genBusy": "बन रहा है…", "ok": "आपका WhatsApp कनेक्ट हो गया है। बॉट सक्रिय है।", "copy": "कोड कॉपी करें", "copied": "कोड कॉपी हो गया", "copyFail": "कॉपी नहीं हो सका: कोड चुनें", "s1": "अपने फ़ोन पर <strong>WhatsApp</strong> खोलें।", "s2": "<strong>सेटिंग्स › लिंक किए गए डिवाइस</strong> पर जाएँ।", "s3": "<strong>डिवाइस लिंक करें</strong> पर टैप करें, फिर <strong>फ़ोन नंबर से लिंक करें</strong> चुनें।", "s4": "ऊपर दिखाया गया कोड दर्ज करें।", "howT": "कैसे काम करता है", "howLead": "तीन चरण, एक मिनट से भी कम।", "h1": "अपना नंबर डालें", "p1": "देश कोड के साथ, बिना 0 और स्पेस के।", "h2": "अपना कोड बनाएँ", "p2": "8 अक्षरों का कोड दिखता है, कॉपी करने के लिए तैयार।", "h3": "उसे WhatsApp में डालें", "p3": "लिंक किए गए डिवाइस में, और बॉट सक्रिय हो जाता है।", "whyT": "NEXUS CRASH क्यों", "f1h": "तेज़", "f1p": "आपका अकाउंट कुछ ही सेकंड में कनेक्ट हो जाता है।", "f2h": "आपकी चैट में", "f2p": "बॉट आपके कमांड का जवाब सीधे WhatsApp में देता है।", "f3h": "कंट्रोल आपके हाथ में", "f3p": "WhatsApp से कभी भी बॉट को डिस्कनेक्ट करें।", "faqT": "अक्सर पूछे जाने वाले प्रश्न", "q1": "मुझे नंबर किस फ़ॉर्मैट में डालना है?", "a1": "देश कोड के साथ पूरा नंबर, बिना शुरुआती 0, बिना स्पेस और बिना + चिह्न के। उदाहरण: 243812345678।", "q2": "कोड कहाँ डालना है?", "a2": "WhatsApp में सेटिंग्स › लिंक किए गए डिवाइस › डिवाइस लिंक करें खोलें, फिर “फ़ोन नंबर से लिंक करें” चुनकर कोड डालें।", "q3": "कोड काम नहीं कर रहा, क्या करें?", "a3": "अपना नंबर जाँचें, नया कोड बनाएँ और जल्दी डालें। समस्या बनी रहे तो मेनू (ओनर से संपर्क) से ओनर को लिखें।", "q4": "बॉट को डिस्कनेक्ट कैसे करें?", "a4": "WhatsApp › सेटिंग्स › लिंक किए गए डिवाइस खोलें, बॉट के डिवाइस पर टैप करें और लॉग आउट चुनें। आप जब चाहें ऐसा कर सकते हैं।", "fInfos": "जानकारी", "fSec": "सुरक्षा", "fContact": "संपर्क", "fAbout": "हमारे बारे में", "rights": "सर्वाधिकार सुरक्षित", "waAria": "WhatsApp पर संपर्क करें", "toTop": "ऊपर जाएँ", "close": "बंद करें", "contactP": "कोई सवाल, कनेक्शन की समस्या या अनुरोध? सीधे WhatsApp पर ओनर को लिखें।", "copyNum": "नंबर कॉपी करें", "infosP1": "<strong>NEXUS CRASH</strong> एक WhatsApp बॉट है: आपका अकाउंट कनेक्ट होने के बाद यह आपकी चैट में सीधे आपके कमांड का जवाब देता है।", "infosP2": "इसे कनेक्ट करने के लिए:", "il1": "इस पेज पर अपना नंबर डालें।", "il2": "अपना पेयरिंग कोड बनाएँ।", "il3": "यह कोड WhatsApp में लिंक किए गए डिवाइस में डालें।", "infosP3": "आपका अकाउंट आपके नियंत्रण में रहता है: आप WhatsApp से कभी भी बॉट को डिस्कनेक्ट कर सकते हैं। इसका ज़िम्मेदारी से और WhatsApp के नियमों के अनुसार उपयोग करें।", "secP": "बॉट को निश्चिंत होकर इस्तेमाल करने के कुछ अच्छे तरीके:", "t1": "अपना पेयरिंग कोड किसी के साथ साझा न करें।", "t2": "WhatsApp में अपने लिंक किए गए डिवाइस की सूची नियमित रूप से जाँचें।", "t3": "बॉट का उपयोग बंद करते ही उसका डिवाइस डिस्कनेक्ट कर दें।", "t4": "अपने अकाउंट की सुरक्षा के लिए WhatsApp के नियमों का पालन करें।", "aboutP1": "NEXUS CRASH को <strong>PRINCE TECH</strong> ने बनाया है और वही इसे संभालते हैं।", "aboutP2": "कोई विचार, समस्या या अनुरोध? ओनर WhatsApp पर जवाब देते हैं।", "aboutBtn": "PRINCE TECH से संपर्क करें", "langT": "भाषा", "toastLink": "लिंक कॉपी हो गया", "fxOn": "बिजली चालू", "fxOff": "बिजली बंद", "copyNoDev": "इस डिवाइस पर कॉपी संभव नहीं", "numCopied": "नंबर कॉपी हो गया", "connectedToast": "WhatsApp कनेक्ट हो गया", "shareText": "कुछ ही सेकंड में अपना WhatsApp NEXUS CRASH से कनेक्ट करें।", "errLen": "देश कोड के साथ सही नंबर डालें (8 से 15 अंक)।", "expired": "कोड की समय-सीमा समाप्त हो गई। नया कोड बनाएँ।", "eCode": "कोड नहीं बन सका। अपना नंबर और उसका देश कोड जाँचें।", "eFull": "अभी सभी सर्वर व्यस्त हैं। थोड़ी देर बाद फिर कोशिश करें या ओनर से संपर्क करें।", "eAlready": "यह नंबर पहले से कनेक्ट है। WhatsApp से इसे डिस्कनेक्ट करके फिर कोशिश करें।", "eBlocked": "इस नंबर का उपयोग नहीं किया जा सकता।", "eUnreach": "बॉट अभी जवाब नहीं दे रहा। थोड़ी देर बाद फिर कोशिश करें।", "eGeneric": "कुछ गड़बड़ हो गई। थोड़ी देर बाद फिर कोशिश करें।"}, "ru": {"title": "NEXUS CRASH — Подключите свой WhatsApp", "desc": "NEXUS CRASH — бот для WhatsApp, который подключается к вашему аккаунту за несколько секунд. Made by PRINCE TECH.", "menuAria": "Главное меню", "openMenu": "Открыть меню", "navT": "НАВИГАЦИЯ", "aboutT": "О ПРОЕКТЕ", "toolsT": "ИНСТРУМЕНТЫ", "home": "ГЛАВНАЯ", "connect": "ПОДКЛЮЧИТЬ МОЙ WHATSAPP", "how": "КАК ЭТО РАБОТАЕТ", "faq": "FAQ", "infos": "ИНФО", "security": "БЕЗОПАСНОСТЬ И СОВЕТЫ", "contact": "СВЯЗЬ С ВЛАДЕЛЬЦЕМ", "share": "ПОДЕЛИТЬСЯ САЙТОМ", "copylink": "КОПИРОВАТЬ ССЫЛКУ", "fx": "МОЛНИИ", "lang": "ЯЗЫК", "online": "ОНЛАЙН", "online2": " · готов к подключению", "tag": "Бот для WhatsApp, который подключается к вашему аккаунту за несколько секунд.", "chip1": "Быстрое подключение", "chip2": "Отключение в любой момент", "pairT": "Подключить мой WhatsApp", "pairSub": "Введите номер, получите код и введите его в WhatsApp.", "label": "Ваш номер WhatsApp", "hint": "С кодом страны, без 0 и пробелов. Пример: 243812345678", "gen": "Получить код", "genBusy": "Создаём код…", "ok": "Ваш WhatsApp подключён. Бот активен.", "copy": "Скопировать код", "copied": "Код скопирован", "copyFail": "Не удалось скопировать: выделите код", "s1": "Откройте <strong>WhatsApp</strong> на телефоне.", "s2": "Перейдите в <strong>Настройки › Связанные устройства</strong>.", "s3": "Нажмите <strong>Привязка устройства</strong>, затем <strong>Привязать по номеру телефона</strong>.", "s4": "Введите код, показанный выше.", "howT": "Как это работает", "howLead": "Три шага, меньше минуты.", "h1": "Введите номер", "p1": "С кодом страны, без 0 и пробелов.", "h2": "Получите код", "p2": "Появится код из 8 символов, готовый к копированию.", "h3": "Введите его в WhatsApp", "p3": "В разделе «Связанные устройства» — и бот активен.", "whyT": "Почему NEXUS CRASH", "f1h": "Быстро", "f1p": "Ваш аккаунт подключается за несколько секунд.", "f2h": "Прямо в ваших чатах", "f2p": "Бот отвечает на команды прямо в WhatsApp.", "f3h": "Контроль у вас", "f3p": "Отключайте бота в любой момент через WhatsApp.", "faqT": "Частые вопросы", "q1": "В каком формате вводить номер?", "a1": "Полный номер с кодом страны, без ведущего 0, без пробелов и без знака +. Пример: 243812345678.", "q2": "Куда вводить код?", "a2": "В WhatsApp откройте Настройки › Связанные устройства › Привязка устройства, выберите «Привязать по номеру телефона» и введите код.", "q3": "Код не работает, что делать?", "a3": "Проверьте номер, получите новый код и введите его быстро. Если проблема не уходит, напишите владельцу через меню (СВЯЗЬ С ВЛАДЕЛЬЦЕМ).", "q4": "Как отключить бота?", "a4": "Откройте WhatsApp › Настройки › Связанные устройства, нажмите на устройство бота и выберите «Выйти». Это можно сделать в любое время.", "fInfos": "Инфо", "fSec": "Безопасность", "fContact": "Контакты", "fAbout": "О проекте", "rights": "Все права защищены", "waAria": "Написать в WhatsApp", "toTop": "Наверх", "close": "Закрыть", "contactP": "Вопрос, проблема с подключением или просьба? Напишите владельцу прямо в WhatsApp.", "copyNum": "Скопировать номер", "infosP1": "<strong>NEXUS CRASH</strong> — бот для WhatsApp: после подключения аккаунта он отвечает на ваши команды прямо в чатах.", "infosP2": "Чтобы подключить его:", "il1": "Введите номер на этой странице.", "il2": "Получите код сопряжения.", "il3": "Введите этот код в WhatsApp, в разделе «Связанные устройства».", "infosP3": "Аккаунт остаётся под вашим контролем: бота можно отключить в любой момент через WhatsApp. Пользуйтесь ответственно и соблюдайте правила WhatsApp.", "secP": "Несколько полезных привычек для спокойного использования бота:", "t1": "Никому не сообщайте код сопряжения.", "t2": "Регулярно проверяйте список связанных устройств в WhatsApp.", "t3": "Отключайте устройство бота, как только перестанете им пользоваться.", "t4": "Соблюдайте правила WhatsApp, чтобы защитить аккаунт.", "aboutP1": "NEXUS CRASH создан и поддерживается <strong>PRINCE TECH</strong>.", "aboutP2": "Идея, проблема или просьба? Владелец отвечает в WhatsApp.", "aboutBtn": "Связаться с PRINCE TECH", "langT": "Язык", "toastLink": "Ссылка скопирована", "fxOn": "Молнии включены", "fxOff": "Молнии выключены", "copyNoDev": "Копирование недоступно на этом устройстве", "numCopied": "Номер скопирован", "connectedToast": "WhatsApp подключён", "shareText": "Подключите свой WhatsApp к NEXUS CRASH за несколько секунд.", "errLen": "Введите корректный номер с кодом страны (от 8 до 15 цифр).", "expired": "Срок действия кода истёк. Получите новый.", "eCode": "Не удалось получить код. Проверьте номер и код страны.", "eFull": "Сейчас все серверы заняты. Повторите попытку чуть позже или свяжитесь с владельцем.", "eAlready": "Этот номер уже подключён. Отключите его через WhatsApp и повторите попытку.", "eBlocked": "Этот номер использовать нельзя.", "eUnreach": "Бот сейчас не отвечает. Повторите попытку чуть позже.", "eGeneric": "Произошла ошибка. Повторите попытку чуть позже."}, "tr": {"title": "NEXUS CRASH — WhatsApp'ını bağla", "desc": "NEXUS CRASH, birkaç saniyede hesabına bağlanan WhatsApp botu. Made by PRINCE TECH.", "menuAria": "Ana menü", "openMenu": "Menüyü aç", "navT": "GEZİNME", "aboutT": "HAKKINDA", "toolsT": "ARAÇLAR", "home": "ANA SAYFA", "connect": "WHATSAPP'IMI BAĞLA", "how": "NASIL ÇALIŞIR", "faq": "SSS", "infos": "BİLGİ", "security": "GÜVENLİK VE İPUÇLARI", "contact": "SAHİBİYLE İLETİŞİM", "share": "SİTEYİ PAYLAŞ", "copylink": "BAĞLANTIYI KOPYALA", "fx": "ŞİMŞEK", "lang": "DİL", "online": "ÇEVRİMİÇİ", "online2": " · bağlanmaya hazır", "tag": "Birkaç saniyede hesabına bağlanan WhatsApp botu.", "chip1": "Hızlı bağlantı", "chip2": "İstediğin zaman bağlantıyı kes", "pairT": "WhatsApp'ımı bağla", "pairSub": "Numaranı gir, kodunu al, WhatsApp'a yaz.", "label": "WhatsApp numaran", "hint": "Ülke koduyla, başında 0 ve boşluk olmadan. Örnek: 243812345678", "gen": "Kodumu oluştur", "genBusy": "Oluşturuluyor…", "ok": "WhatsApp'ın bağlandı. Bot aktif.", "copy": "Kodu kopyala", "copied": "Kod kopyalandı", "copyFail": "Kopyalanamadı: kodu seç", "s1": "Telefonunda <strong>WhatsApp</strong>'ı aç.", "s2": "<strong>Ayarlar › Bağlı cihazlar</strong> bölümüne git.", "s3": "<strong>Cihaz bağla</strong>'ya, ardından <strong>Telefon numarasıyla bağla</strong>'ya dokun.", "s4": "Yukarıda gösterilen kodu gir.", "howT": "Nasıl çalışır", "howLead": "Üç adım, bir dakikadan az.", "h1": "Numaranı gir", "p1": "Ülke koduyla, başında 0 ve boşluk olmadan.", "h2": "Kodunu oluştur", "p2": "8 karakterlik kod görünür, kopyalamaya hazır.", "h3": "WhatsApp'a yaz", "p3": "Bağlı cihazlar bölümünde, ve bot aktif olur.", "whyT": "Neden NEXUS CRASH", "f1h": "Hızlı", "f1p": "Hesabın birkaç saniyede bağlanır.", "f2h": "Sohbetlerinde", "f2p": "Bot, komutlarına doğrudan WhatsApp içinde yanıt verir.", "f3h": "Kontrol sende", "f3p": "Botun bağlantısını istediğin zaman WhatsApp'tan kes.", "faqT": "Sık sorulan sorular", "q1": "Hangi numara biçimini kullanmalıyım?", "a1": "Ülke koduyla birlikte tam numara; başında 0, boşluk ve + işareti olmadan. Örnek: 243812345678.", "q2": "Kodu nereye girmeliyim?", "a2": "WhatsApp'ta Ayarlar › Bağlı cihazlar › Cihaz bağla yolunu aç, “Telefon numarasıyla bağla”yı seç ve kodu gir.", "q3": "Kod çalışmıyor, ne yapmalıyım?", "a3": "Numaranı kontrol et, yeni kod oluştur ve hızlıca gir. Sorun sürerse menüden (SAHİBİYLE İLETİŞİM) sahibine yaz.", "q4": "Botun bağlantısını nasıl keserim?", "a4": "WhatsApp › Ayarlar › Bağlı cihazlar'ı aç, botun cihazına dokun ve Çıkış yap'ı seç. İstediğin zaman yapabilirsin.", "fInfos": "Bilgi", "fSec": "Güvenlik", "fContact": "İletişim", "fAbout": "Hakkında", "rights": "Tüm hakları saklıdır", "waAria": "WhatsApp'tan iletişime geç", "toTop": "Yukarı çık", "close": "Kapat", "contactP": "Bir soru, bağlantı sorunu ya da isteğin mi var? Sahibine doğrudan WhatsApp'tan yaz.", "copyNum": "Numarayı kopyala", "infosP1": "<strong>NEXUS CRASH</strong> bir WhatsApp botudur: hesabın bağlandıktan sonra komutlarına doğrudan sohbetlerinde yanıt verir.", "infosP2": "Bağlamak için:", "il1": "Bu sayfaya numaranı gir.", "il2": "Eşleştirme kodunu oluştur.", "il3": "Bu kodu WhatsApp'ta Bağlı cihazlar bölümüne gir.", "infosP3": "Hesabın senin kontrolünde kalır: botun bağlantısını istediğin zaman WhatsApp'tan kesebilirsin. Sorumlu ve WhatsApp kurallarına uygun şekilde kullan.", "secP": "Botu rahatça kullanmak için birkaç iyi alışkanlık:", "t1": "Eşleştirme kodunu kimseyle paylaşma.", "t2": "WhatsApp'taki Bağlı cihazlar listeni düzenli kontrol et.", "t3": "Botu kullanmayı bıraktığında cihazının bağlantısını kes.", "t4": "Hesabını korumak için WhatsApp kurallarına uy.", "aboutP1": "NEXUS CRASH, <strong>PRINCE TECH</strong> tarafından tasarlanıp geliştirilmektedir.", "aboutP2": "Bir fikir, sorun ya da isteğin mi var? Sahibi WhatsApp'tan yanıt verir.", "aboutBtn": "PRINCE TECH ile iletişime geç", "langT": "Dil", "toastLink": "Bağlantı kopyalandı", "fxOn": "Şimşek açık", "fxOff": "Şimşek kapalı", "copyNoDev": "Bu cihazda kopyalama mümkün değil", "numCopied": "Numara kopyalandı", "connectedToast": "WhatsApp bağlandı", "shareText": "WhatsApp'ını birkaç saniyede NEXUS CRASH'e bağla.", "errLen": "Ülke koduyla geçerli bir numara gir (8 ile 15 hane).", "expired": "Kodun süresi doldu. Yeni bir kod oluştur.", "eCode": "Kod oluşturulamadı. Numaranı ve ülke kodunu kontrol et.", "eFull": "Şu anda tüm sunucular meşgul. Birazdan tekrar dene veya sahibiyle iletişime geç.", "eAlready": "Bu numara zaten bağlı. WhatsApp'tan bağlantısını kes ve tekrar dene.", "eBlocked": "Bu numara kullanılamaz.", "eUnreach": "Bot şu anda yanıt vermiyor. Birazdan tekrar dene.", "eGeneric": "Bir hata oluştu. Birazdan tekrar dene."}, "id": {"title": "NEXUS CRASH — Hubungkan WhatsApp kamu", "desc": "NEXUS CRASH, bot WhatsApp yang terhubung ke akunmu dalam hitungan detik. Made by PRINCE TECH.", "menuAria": "Menu utama", "openMenu": "Buka menu", "navT": "NAVIGASI", "aboutT": "TENTANG", "toolsT": "ALAT", "home": "BERANDA", "connect": "HUBUNGKAN WHATSAPP SAYA", "how": "CARA KERJA", "faq": "FAQ", "infos": "INFO", "security": "KEAMANAN & TIPS", "contact": "KONTAK PEMILIK", "share": "BAGIKAN SITUS", "copylink": "SALIN TAUTAN", "fx": "PETIR", "lang": "BAHASA", "online": "ONLINE", "online2": " · siap terhubung", "tag": "Bot WhatsApp yang terhubung ke akunmu dalam hitungan detik.", "chip1": "Koneksi cepat", "chip2": "Putuskan kapan saja", "pairT": "Hubungkan WhatsApp saya", "pairSub": "Masukkan nomormu, ambil kodenya, lalu ketik di WhatsApp.", "label": "Nomor WhatsApp kamu", "hint": "Dengan kode negara, tanpa angka 0 dan spasi. Contoh: 243812345678", "gen": "Buat kode saya", "genBusy": "Sedang membuat…", "ok": "WhatsApp kamu sudah terhubung. Bot aktif.", "copy": "Salin kode", "copied": "Kode disalin", "copyFail": "Tidak bisa menyalin: pilih kodenya", "s1": "Buka <strong>WhatsApp</strong> di ponselmu.", "s2": "Buka <strong>Pengaturan › Perangkat tertaut</strong>.", "s3": "Ketuk <strong>Tautkan perangkat</strong>, lalu <strong>Tautkan dengan nomor telepon</strong>.", "s4": "Masukkan kode yang tampil di atas.", "howT": "Cara kerja", "howLead": "Tiga langkah, kurang dari satu menit.", "h1": "Masukkan nomormu", "p1": "Dengan kode negara, tanpa angka 0 dan spasi.", "h2": "Buat kodemu", "p2": "Kode 8 karakter muncul, siap disalin.", "h3": "Ketik di WhatsApp", "p3": "Di Perangkat tertaut, lalu bot aktif.", "whyT": "Mengapa NEXUS CRASH", "f1h": "Cepat", "f1p": "Akunmu terhubung dalam hitungan detik.", "f2h": "Di dalam chatmu", "f2p": "Bot menjawab perintahmu langsung di WhatsApp.", "f3h": "Kamu yang pegang kendali", "f3p": "Putuskan bot kapan saja lewat WhatsApp.", "faqT": "Pertanyaan umum", "q1": "Format nomor apa yang harus dipakai?", "a1": "Nomor lengkap dengan kode negara, tanpa angka 0 di depan, tanpa spasi, dan tanpa tanda +. Contoh: 243812345678.", "q2": "Di mana saya memasukkan kodenya?", "a2": "Di WhatsApp, buka Pengaturan › Perangkat tertaut › Tautkan perangkat, pilih “Tautkan dengan nomor telepon”, lalu masukkan kodenya.", "q3": "Kodenya tidak berfungsi, bagaimana?", "a3": "Periksa nomormu, buat kode baru, dan masukkan dengan cepat. Jika masalah berlanjut, hubungi pemilik lewat menu (KONTAK PEMILIK).", "q4": "Bagaimana cara memutuskan bot?", "a4": "Buka WhatsApp › Pengaturan › Perangkat tertaut, ketuk perangkat bot, lalu pilih Keluar. Kamu bisa melakukannya kapan saja.", "fInfos": "Info", "fSec": "Keamanan", "fContact": "Kontak", "fAbout": "Tentang", "rights": "Hak cipta dilindungi", "waAria": "Hubungi lewat WhatsApp", "toTop": "Kembali ke atas", "close": "Tutup", "contactP": "Ada pertanyaan, masalah koneksi, atau permintaan? Kirim pesan langsung ke pemilik di WhatsApp.", "copyNum": "Salin nomor", "infosP1": "<strong>NEXUS CRASH</strong> adalah bot WhatsApp: setelah akunmu terhubung, bot menjawab perintahmu langsung di chatmu.", "infosP2": "Untuk menghubungkannya:", "il1": "Masukkan nomormu di halaman ini.", "il2": "Buat kode pemasangan.", "il3": "Masukkan kode itu di WhatsApp, pada Perangkat tertaut.", "infosP3": "Akunmu tetap kamu yang kendalikan: kamu bisa memutuskan bot kapan saja lewat WhatsApp. Gunakan dengan bertanggung jawab dan sesuai aturan WhatsApp.", "secP": "Beberapa kebiasaan baik agar tenang saat memakai bot:", "t1": "Jangan bagikan kode pemasangan kepada siapa pun.", "t2": "Periksa daftar Perangkat tertaut di WhatsApp secara berkala.", "t3": "Putuskan perangkat bot begitu kamu berhenti memakainya.", "t4": "Patuhi aturan WhatsApp untuk melindungi akunmu.", "aboutP1": "NEXUS CRASH dirancang dan dikelola oleh <strong>PRINCE TECH</strong>.", "aboutP2": "Punya ide, masalah, atau permintaan? Pemilik membalas di WhatsApp.", "aboutBtn": "Hubungi PRINCE TECH", "langT": "Bahasa", "toastLink": "Tautan disalin", "fxOn": "Petir aktif", "fxOff": "Petir nonaktif", "copyNoDev": "Tidak bisa menyalin di perangkat ini", "numCopied": "Nomor disalin", "connectedToast": "WhatsApp terhubung", "shareText": "Hubungkan WhatsApp kamu ke NEXUS CRASH dalam hitungan detik.", "errLen": "Masukkan nomor yang valid dengan kode negara (8 sampai 15 digit).", "expired": "Kode sudah kedaluwarsa. Buat yang baru.", "eCode": "Gagal membuat kode. Periksa nomormu dan kode negaranya.", "eFull": "Semua server sedang sibuk. Coba lagi sebentar lagi atau hubungi pemilik.", "eAlready": "Nomor ini sudah terhubung. Putuskan dari WhatsApp lalu coba lagi.", "eBlocked": "Nomor ini tidak dapat digunakan.", "eUnreach": "Bot sedang tidak merespons. Coba lagi sebentar lagi.", "eGeneric": "Terjadi kesalahan. Coba lagi sebentar lagi."}};
-
-const LANGS = [['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['ar','العربية'],
-               ['sw','Kiswahili'],['hi','हिन्दी'],['ru','Русский'],['tr','Türkçe'],['id','Bahasa Indonesia']];
-let lang = 'fr', errKey = '';
-function t(k){ const d = I18N[lang]; return (d && d[k]) || I18N.en[k] || I18N.fr[k] || k; }
-function pickLang(){
-  let saved = null;
-  try{ saved = localStorage.getItem('nexus-lang'); }catch(e){}
-  if (saved && I18N[saved]) return saved;
-  const nav = ((navigator.languages && navigator.languages[0]) || navigator.language || 'fr').slice(0,2).toLowerCase();
-  return I18N[nav] ? nav : 'fr';
-}
-function applyLang(){
-  const root = document.documentElement;
-  root.lang = lang; root.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.title = t('title');
-  const md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', t('desc'));
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    if (el.id === 'gen' && typeof busy !== 'undefined' && busy) return;
-    el.textContent = t(el.dataset.i18n);
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
-  document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t(el.dataset.i18nAria)));
-  document.getElementById('langCode').textContent = lang.toUpperCase();
-  document.getElementById('langTail').textContent = lang.toUpperCase();
-  document.querySelectorAll('#langs button').forEach(b => b.setAttribute('aria-current', b.dataset.lang === lang));
-  if (errKey) document.getElementById('err').textContent = t(errKey);
-}
-function setLang(c){
-  if (!I18N[c]) return;
-  lang = c;
-  try{ localStorage.setItem('nexus-lang', c); }catch(e){}
-  applyLang();
-}
-(function buildLangList(){
-  const box = document.getElementById('langs');
-  LANGS.forEach(([c,n]) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.dataset.lang = c; b.lang = c; b.textContent = n;
-    b.addEventListener('click', () => { setLang(c); closeModals(); });
-    box.appendChild(b);
-  });
-})();
-
 
 const toastEl = document.getElementById('toast');
 let toastT;
@@ -792,14 +710,14 @@ function goTo(id){
 }
 async function copyText(txt, ok){
   try{ await navigator.clipboard.writeText(txt); toast(ok); }
-  catch(e){ toast(t('copyNoDev')); }
+  catch(e){ toast('Copie impossible sur cet appareil'); }
 }
 async function share(){
-  const data = {title:'NEXUS CRASH', text:t('shareText'), url:location.href};
+  const data = {title:'NEXUS CRASH', text:'Connecte ton WhatsApp à NEXUS CRASH en quelques secondes.', url:location.href};
   if (navigator.share){
     try{ await navigator.share(data); } catch(e){}
   } else {
-    copyText(location.href, t('toastLink'));
+    copyText(location.href, 'Lien copié dans le presse-papiers');
   }
 }
 
@@ -811,15 +729,15 @@ list.addEventListener('click', e => {
   if (d.open){ openModal(d.open); }
   else if (d.go){ goTo(d.go); }
   else if (d.act === 'share'){ share(); }
-  else if (d.act === 'copylink'){ copyText(location.href, t('toastLink')); }
-  else if (d.act === 'fx'){ setFx(!fx); toast(fx ? t('fxOn') : t('fxOff')); return; }
+  else if (d.act === 'copylink'){ copyText(location.href, 'Lien copié dans le presse-papiers'); }
+  else if (d.act === 'fx'){ setFx(!fx); toast(fx ? 'Éclairs activés' : 'Éclairs désactivés'); return; }
   toggleMenu(false);
 });
 document.addEventListener('click', e => {
   const o = e.target.closest('[data-open]');
   if (o && !list.contains(o)){ closeModals(); openModal(o.dataset.open); }
   const c = e.target.closest('[data-act="copynum"]');
-  if (c) copyText('+243860885022', t('numCopied'));
+  if (c) copyText('+243860885022', 'Numéro copié');
 });
 document.querySelectorAll('.overlay').forEach(o => {
   o.addEventListener('click', e => {
@@ -839,8 +757,7 @@ const num = document.getElementById('num'), err = document.getElementById('err')
       codeBox = document.getElementById('code'), copyBtn = document.getElementById('copy');
 let currentCode = '', currentNum = '', busy = false, pollT = null;
 
-function setErr(k){ errKey = k || ''; err.textContent = k ? t(k) : ''; }
-num.addEventListener('input', () => { num.value = num.value.replace(/\D/g,''); setErr(''); });
+num.addEventListener('input', () => { num.value = num.value.replace(/\D/g,''); err.textContent=''; });
 num.addEventListener('keydown', e => { if (e.key === 'Enter') gen.click(); });
 
 function showCode(c){
@@ -856,12 +773,12 @@ function showCode(c){
 }
 
 function errorMessage(code){
-  if (code === 'invalid_number' || code === 'code_failed') return 'eCode';
-  if (code === 'server_full') return 'eFull';
-  if (code === 'already_connected') return 'eAlready';
-  if (code === 'blocked') return 'eBlocked';
-  if (code === 'bot_unreachable') return 'eUnreach';
-  return 'eGeneric';
+  if (code === 'invalid_number' || code === 'code_failed') return 'Impossible de générer le code. Vérifie ton numéro et son indicatif.';
+  if (code === 'server_full') return 'Tous les serveurs sont occupés pour le moment. Réessaie dans un instant ou contacte le propriétaire.';
+  if (code === 'already_connected') return 'Ce numéro est déjà connecté. Déconnecte-le depuis WhatsApp puis réessaie.';
+  if (code === 'blocked') return 'Ce numéro ne peut pas être utilisé.';
+  if (code === 'bot_unreachable') return 'Le bot ne répond pas pour le moment. Réessaie dans un instant.';
+  return 'Une erreur est survenue. Réessaie dans un instant.';
 }
 
 function stopPolling(){ clearInterval(pollT); pollT = null; }
@@ -879,13 +796,13 @@ function startPolling(numero){
         stopPolling();
         currentCode = '';
         result.classList.add('show', 'done');
-        toast(t('connectedToast'));
+        toast('WhatsApp connecté');
       } else if (d.status === 'unknown'){
         misses++;
         if (misses >= 2){
           stopPolling();
           result.classList.remove('show');
-          setErr('expired');
+          err.textContent = 'Le code a expiré. Génère-en un nouveau.';
         }
       } else {
         misses = 0;
@@ -898,11 +815,11 @@ gen.addEventListener('click', async () => {
   if (busy) return;
   const n = num.value.trim();
   if (n.length < 8 || n.length > 15){
-    setErr('errLen');
+    err.textContent = 'Entre un numéro valide avec l\'indicatif du pays (8 à 15 chiffres).';
     num.focus(); return;
   }
   busy = true; stopPolling();
-  gen.disabled = true; gen.textContent = t('genBusy'); setErr('');
+  gen.disabled = true; gen.textContent = 'Génération en cours…'; err.textContent = '';
   result.classList.remove('show', 'done');
   try{
     const r = await fetch('/api/pair', {
@@ -917,24 +834,22 @@ gen.addEventListener('click', async () => {
       showCode(d.code);
       startPolling(n);
     } else {
-      setErr(errorMessage(d && d.error));
+      err.textContent = errorMessage(d && d.error);
     }
   } catch(e){
-    setErr(errorMessage('bot_unreachable'));
+    err.textContent = errorMessage('bot_unreachable');
   } finally {
     busy = false;
-    gen.disabled = false; gen.textContent = t('gen');
+    gen.disabled = false; gen.textContent = 'Générer mon code';
   }
 });
 
 copyBtn.addEventListener('click', async () => {
   const txt = currentCode.slice(0,4) + '-' + currentCode.slice(4);
-  try{ await navigator.clipboard.writeText(txt); copyBtn.textContent = t('copied'); }
-  catch(e){ copyBtn.textContent = t('copyFail'); }
-  setTimeout(() => copyBtn.textContent = t('copy'), 1800);
+  try{ await navigator.clipboard.writeText(txt); copyBtn.textContent = 'Code copié'; }
+  catch(e){ copyBtn.textContent = 'Copie impossible : sélectionne le code'; }
+  setTimeout(() => copyBtn.textContent = 'Copier le code', 1800);
 });
-lang = pickLang();
-applyLang();
 </script>
 </body>
 </html>

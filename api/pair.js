@@ -1,4 +1,5 @@
 const { BOTS, getStatus } = require('./_bots');
+const store = require('./_store');
 
 const RETRY = new Set(['server_full', 'bot_unreachable', 'bad_response', 'code_failed']);
 
@@ -33,13 +34,19 @@ module.exports = async (req, res) => {
     if (numero.length < 8 || numero.length > 15) return res.status(400).json({ error: 'invalid_number' });
 
     const statuses = await Promise.all(BOTS.map(b => getStatus(b, numero)));
-    if (statuses.includes('connected')) return res.status(409).json({ error: 'already_connected' });
+    if (statuses.includes('connected')) {
+        await store.touch(numero); // numéro déjà connecté : on le retient
+        return res.status(409).json({ error: 'already_connected' });
+    }
 
     let last = { status: 502, data: { error: 'bot_unreachable' } };
 
     for (const base of shuffle(BOTS)) {
         const out = await tryPair(base, numero);
-        if (out.data && out.data.success) return res.status(200).json(out.data);
+        if (out.data && out.data.success) {
+            await store.ensure(numero); // enregistré en attente, passera "connecté" dès que le bot confirme
+            return res.status(200).json(out.data);
+        }
         last = out;
         const code = out.data && out.data.error;
         if (!RETRY.has(code) && out.status < 500) break;

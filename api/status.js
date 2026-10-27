@@ -1,4 +1,5 @@
 const { BOTS, getStatus } = require('./_bots');
+const store = require('./_store');
 
 module.exports = async (req, res) => {
     const numero = String((req.query && req.query.numero) || '').replace(/[^0-9]/g, '');
@@ -9,6 +10,8 @@ module.exports = async (req, res) => {
     if (!valid.length) return res.status(502).json({ error: 'bot_unreachable' });
 
     const status = valid.includes('connected') ? 'connected' : (valid.find(s => s !== 'unknown') || 'unknown');
+
+    if (status === 'connected') await store.touch(numero);
 
     res.setHeader('Cache-Control', 'no-store');
     res.status(200).json({ status });

@@ -321,6 +321,39 @@
   .totop:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px}
   .totop svg{width:20px;height:20px}
 
+
+  /* ===== Mes appareils ===== */
+  .devices .tabs{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:14px;background:rgba(0,0,0,.4);border:1px solid var(--line)}
+  .devices .tabs button{
+    display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 8px;border:0;border-radius:10px;cursor:pointer;
+    background:none;color:var(--muted);font:600 .92rem 'Outfit',sans-serif;letter-spacing:.04em;transition:background .2s,color .2s;
+  }
+  .devices .tabs button:hover{color:var(--gold-100)}
+  .devices .tabs button[aria-selected="true"]{background:linear-gradient(135deg,rgba(247,210,106,.22),rgba(154,112,22,.16));color:var(--gold-100);box-shadow:0 0 0 1px var(--line) inset}
+  .devices .tabs b{min-width:22px;padding:1px 7px;border-radius:999px;font-size:.76rem;border:1px solid var(--line);color:var(--gold-300);font-weight:600}
+  .devlist{list-style:none;margin-top:16px;display:grid;gap:10px;text-align:left}
+  .dev{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:rgba(0,0,0,.35);border:1px solid var(--line);animation:pop .2s ease-out}
+  .dev .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--muted)}
+  .dev.on .dot{background:var(--ok);box-shadow:0 0 10px rgba(123,224,161,.7)}
+  .dev .info{flex:1;min-width:0}
+  .dev .n{font-weight:600;color:var(--gold-100);letter-spacing:.04em;overflow-wrap:anywhere}
+  .dev .m{font-size:.8rem;color:var(--muted);margin-top:1px}
+  .dev .tagst{flex:none;font-size:.72rem;font-weight:600;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .dev.on .tagst{color:var(--ok);border-color:rgba(123,224,161,.4)}
+  .dev .rm{flex:none;width:32px;height:32px;border-radius:50%;background:none;border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:.9rem;transition:color .2s,border-color .2s}
+  .dev .rm:hover{color:#ff9b7a;border-color:#ff9b7a}
+  .dev .rm:focus-visible,.linkbtn:focus-visible,.devices .tabs button:focus-visible{outline:2px solid var(--gold-300);outline-offset:3px}
+  .devempty{padding:22px 14px;text-align:center;color:var(--muted);font-size:.92rem;border:1px dashed var(--line);border-radius:14px}
+  .devices .btn.ghost.small{padding:12px 18px;font-size:.92rem}
+  .devices .row{display:flex;gap:10px;flex-wrap:wrap}
+  .devices .row .btn{flex:1;min-width:140px}
+  .devices .btn.spin::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid var(--gold-300);border-top-color:transparent;animation:rot .8s linear infinite}
+  @keyframes rot{to{transform:rotate(360deg)}}
+  .linkbtn{margin-top:14px;background:none;border:0;color:var(--muted);font:400 .85rem 'Outfit',sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .linkbtn:hover{color:#ff9b7a}
+  .devices .sep{height:1px;margin:24px 0 0;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .devices .hint.center{text-align:center}
+
   @media (max-width:640px){
     .grid,.grid.feat{grid-template-columns:1fr}
     .status span.long{display:none}
@@ -350,6 +383,11 @@
       <button role="menuitem" data-go="pair">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
         CONNECTER MON WHATSAPP
+      </button>
+      <button role="menuitem" data-go="devices">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
+        MES APPAREILS
+        <span class="tail off" id="menuDevCount">0</span>
       </button>
       <button role="menuitem" data-go="how">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
@@ -444,6 +482,23 @@
     </div>
   </section>
 
+  <section class="card devices" id="devices" aria-labelledby="t-dev">
+    <h2 id="t-dev">Mes appareils</h2>
+    <p class="sub">Les numéros connectés au bot en ce moment, et ceux qui l'ont déjà été.</p>
+
+    <div class="tabs" role="tablist" aria-label="Type d'appareils">
+      <button role="tab" id="tab-connected" aria-selected="true" aria-controls="devList" data-tab="connected">Connectés <b id="cnt-connected">0</b></button>
+      <button role="tab" id="tab-history" aria-selected="false" aria-controls="devList" data-tab="history">Historique <b id="cnt-history">0</b></button>
+    </div>
+
+    <ul class="devlist" id="devList" role="tabpanel" aria-live="polite"></ul>
+    <p class="hint center" id="devMeta"></p>
+
+    <div class="row">
+      <button class="btn ghost small" id="devRefresh">Actualiser</button>
+    </div>
+  </section>
+
   <section class="block" id="how" aria-labelledby="t-how">
     <h2 id="t-how">Comment ça marche</h2>
     <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
@@ -489,6 +544,10 @@
       <details>
         <summary>Le code ne fonctionne pas, que faire ?</summary>
         <p>Vérifie ton numéro, génère un nouveau code et saisis-le rapidement. Si le souci continue, écris au propriétaire depuis le menu (OWNER CONTACT).</p>
+      </details>
+      <details>
+        <summary>Comment voir mes appareils connectés ?</summary>
+        <p>Rends-toi dans la section « Mes appareils » : l'onglet Connectés affiche les numéros actuellement actifs sur le bot, et l'onglet Historique ceux qui ont déjà été connectés puis déconnectés.</p>
       </details>
       <details>
         <summary>Comment déconnecter le bot ?</summary>
@@ -797,6 +856,7 @@ function startPolling(numero){
         currentCode = '';
         result.classList.add('show', 'done');
         toast('WhatsApp connecté');
+        Devices.refresh(false);
       } else if (d.status === 'unknown'){
         misses++;
         if (misses >= 2){
@@ -850,6 +910,105 @@ copyBtn.addEventListener('click', async () => {
   catch(e){ copyBtn.textContent = 'Copie impossible : sélectionne le code'; }
   setTimeout(() => copyBtn.textContent = 'Copier le code', 1800);
 });
+
+/* ===== Mes appareils ===== */
+const Devices = (() => {
+  const REFRESH_MS = 30000;
+  const $ = id => document.getElementById(id);
+  const listEl = $('devList'), metaEl = $('devMeta'), refreshBtn = $('devRefresh'), menuCount = $('menuDevCount');
+  const fmt = new Intl.DateTimeFormat('fr-FR', {dateStyle:'medium', timeStyle:'short'});
+  let data = {connected:[], history:[]}, tab = 'connected', busy = false, loaded = false, failure = '', unreachable = false, checkedAt = null;
+
+  function row(d, live){
+    const li = document.createElement('li');
+    li.className = 'dev' + (live ? ' on' : '');
+    const dot = document.createElement('span'); dot.className = 'dot';
+    const info = document.createElement('div'); info.className = 'info';
+    const n = document.createElement('div'); n.className = 'n'; n.textContent = '+' + d.num;
+    const m = document.createElement('div'); m.className = 'm';
+    const tag = document.createElement('span'); tag.className = 'tagst';
+    if (live){
+      tag.textContent = 'Connecté';
+      m.textContent = d.since ? 'Connecté depuis le ' + fmt.format(d.since) : 'Appareil actif';
+    } else {
+      tag.textContent = 'Déconnecté';
+      m.textContent = d.last ? 'Dernière connexion le ' + fmt.format(d.last) : 'Déjà connecté auparavant';
+    }
+    info.append(n, m);
+    li.append(dot, info, tag);
+    return li;
+  }
+
+  function empty(text){
+    const e = document.createElement('li'); e.className = 'devempty'; e.textContent = text; return e;
+  }
+
+  function render(){
+    $('cnt-connected').textContent = data.connected.length;
+    $('cnt-history').textContent = data.history.length;
+    menuCount.textContent = data.connected.length;
+    menuCount.classList.toggle('off', !data.connected.length);
+    document.querySelectorAll('.devices .tabs button').forEach(b => {
+      const on = b.dataset.tab === tab;
+      b.setAttribute('aria-selected', on);
+      if (on) listEl.setAttribute('aria-labelledby', b.id);
+    });
+    listEl.textContent = '';
+    if (!loaded && !failure){
+      listEl.appendChild(empty('Chargement…'));
+    } else if (failure && !loaded){
+      listEl.appendChild(empty(failure));
+    } else {
+      const shown = tab === 'connected' ? data.connected : data.history;
+      if (!shown.length){
+        listEl.appendChild(empty(tab === 'connected'
+          ? 'Aucun appareil connecté pour le moment.'
+          : 'Aucun appareil dans l\'historique pour le moment.'));
+      } else {
+        shown.forEach(d => listEl.appendChild(row(d, tab === 'connected')));
+      }
+    }
+    if (failure && loaded) metaEl.textContent = failure;
+    else if (unreachable) metaEl.textContent = 'Le bot ne répond pas : les statuts peuvent ne pas être à jour.';
+    else if (checkedAt) metaEl.textContent = 'Dernière vérification à ' + new Date(checkedAt).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+    else metaEl.textContent = '';
+  }
+
+  async function refresh(manual){
+    if (busy) return;
+    busy = true; refreshBtn.disabled = true; refreshBtn.classList.add('spin');
+    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 25000);
+    try{
+      const r = await fetch('/api/devices', {signal: ctl.signal, cache:'no-store'});
+      const d = await r.json().catch(() => null);
+      if (r.ok && d && Array.isArray(d.connected) && Array.isArray(d.history)){
+        data = d; loaded = true; failure = ''; unreachable = !!d.unreachable; checkedAt = d.checkedAt;
+        if (manual) toast('Liste actualisée');
+      } else {
+        failure = d && d.error === 'storage_not_configured'
+          ? 'La liste n\'est pas encore activée : la base de données n\'est pas configurée.'
+          : 'Impossible de charger la liste pour le moment.';
+        if (manual) toast('Actualisation impossible');
+      }
+    } catch(e){
+      failure = 'Impossible de charger la liste pour le moment.';
+      if (manual) toast('Actualisation impossible');
+    } finally{
+      clearTimeout(t);
+      busy = false; refreshBtn.disabled = false; refreshBtn.classList.remove('spin');
+      render();
+    }
+  }
+
+  document.querySelectorAll('.devices .tabs button').forEach(b =>
+    b.addEventListener('click', () => { tab = b.dataset.tab; render(); }));
+  refreshBtn.addEventListener('click', () => refresh(true));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(false); });
+  setInterval(() => { if (!document.hidden) refresh(false); }, REFRESH_MS);
+  render(); refresh(false);
+
+  return {refresh};
+})();
 </script>
 </body>
 </html>
